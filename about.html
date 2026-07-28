@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Meet the BarberCo team — master barbers with decades of combined experience. Learn our story, values and the passion behind every cut.">
+    <title>About Us | BarberCo Barbershop</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%23B8860B' opacity='.15'/%3E%3Ccircle cx='30' cy='32' r='8' fill='none' stroke='%23B8860B' stroke-width='7'/%3E%3Ccircle cx='30' cy='68' r='8' fill='none' stroke='%23B8860B' stroke-width='7'/%3E%3Cline x1='36' y1='37' x2='72' y2='72' stroke='%23B8860B' stroke-width='8' stroke-linecap='round'/%3E%3Cline x1='36' y1='63' x2='72' y2='28' stroke='%23B8860B' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .story-grid { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+        .story-img-wrap { position:relative; }
+        .story-img-main { width:100%; border-radius:20px; object-fit:cover; aspect-ratio:4/5; }
+        .story-img-accent {
+            position:absolute;
+            bottom:-24px; right:-24px;
+            width:55%;
+            border-radius:16px;
+            object-fit:cover;
+            aspect-ratio:1;
+            border:5px solid var(--bg);
+            box-shadow:var(--shadow-xl);
+        }
+        .story-exp-tag {
+            position:absolute;
+            top:24px; left:-24px;
+            background:var(--primary);
+            color:#FFF;
+            padding:16px 20px;
+            border-radius:14px;
+            text-align:center;
+            box-shadow: 0 8px 28px rgba(184,134,11,0.45);
+        }
+        .story-exp-tag-num { font-family:'Playfair Display',serif; font-size:2rem; font-weight:900; line-height:1; }
+        .story-exp-tag-text { font-size:0.7rem; font-weight:600; letter-spacing:0.1em; opacity:.85; }
+
+        .value-item {
+            display:flex;
+            gap:18px;
+            align-items:flex-start;
+            margin-bottom:28px;
+        }
+        .value-icon {
+            width:48px; height:48px;
+            border-radius:10px;
+            background:var(--primary-subtle);
+            color:var(--primary);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:1.1rem;
+            flex-shrink:0;
+        }
+        .value-title { font-size:1rem; font-weight:700; color:var(--text-dark); margin-bottom:5px; }
+        .value-desc { font-size:0.88rem; color:var(--text-muted); line-height:1.7; }
+
+        @media(max-width:1024px){ .story-grid { grid-template-columns:1fr; gap:40px; } .story-img-accent { display:none; } }
+
+        /* Timeline */
+        .timeline { position:relative; padding-left:32px; }
+        .timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:linear-gradient(to bottom, var(--primary), var(--border)); border-radius:2px; }
+        .tl-item { position:relative; margin-bottom:36px; }
+        .tl-dot { position:absolute; left:-38px; top:4px; width:14px; height:14px; border-radius:50%; background:var(--primary); border:3px solid var(--bg); box-shadow:0 0 0 2px var(--primary); }
+        .tl-year { font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--primary); margin-bottom:6px; }
+        .tl-title { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:var(--text-dark); margin-bottom:6px; }
+        .tl-desc { font-size:0.88rem; color:var(--text-muted); line-height:1.7; }
+    </style>
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+
+<!-- Banner -->
+<div class="page-banner">
+    <img src="assets/about_story.png" alt="BarberCo barbershop interior" loading="lazy">
+    <div class="page-banner-content">
+        <h1 class="aos">Our Story</h1>
+        <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>About</span></div>
+    </div>
+</div>
+
+<!-- ===== OUR STORY ===== -->
+<section class="section">
+    <div class="container">
+        <div class="story-grid">
+            <div class="story-img-wrap aos">
+                <img src="assets/about_story.png" alt="BarberCo vintage shop interior" class="story-img-main" loading="lazy">
+                <img src="assets/service_haircut.png" alt="Barber at work" class="story-img-accent" loading="lazy">
+                <div class="story-exp-tag">
+                    <div class="story-exp-tag-num">12+</div>
+                    <div class="story-exp-tag-text">Years of<br>Excellence</div>
+                </div>
+            </div>
+            <div class="aos delay-2">
+                <div class="section-label">Who We Are</div>
+                <h2 class="section-title">A Barbershop Built on Brotherhood & Craft</h2>
+                <div class="gold-divider"></div>
+                <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.85;margin-bottom:20px;">
+                    BarberCo was born in 2012 out of a simple belief: every man deserves a great barbershop experience. Not just a quick trim, but a ritual — a moment to slow down, sit back, and leave looking and feeling like the best version of himself.
+                </p>
+                <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.85;margin-bottom:32px;">
+                    Co-founded by Marcus Johnson and James Carter, two barbers who met as apprentices and shared a vision for something greater, BarberCo has grown from a two-chair shop into downtown's most trusted grooming destination.
+                </p>
+                <div class="value-item">
+                    <div class="value-icon"><i class="fas fa-gem"></i></div>
+                    <div><div class="value-title">Uncompromising Quality</div><div class="value-desc">We source only the finest tools and products — because your hair deserves nothing less.</div></div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon"><i class="fas fa-handshake"></i></div>
+                    <div><div class="value-title">Community First</div><div class="value-desc">We're proud members of this neighborhood and give back through local events and youth programs.</div></div>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div><div class="value-title">Continuous Learning</div><div class="value-desc">Our barbers train annually at top industry events to keep skills sharp and styles current.</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section class="section-sm" style="background:var(--secondary-dark);">
+    <div class="container">
+        <div class="stats-grid-4">
+            <div class="stat-block aos delay-1" style="border-right:1px solid rgba(255,255,255,0.08);">
+                <div class="stat-number" data-counter data-target="12" data-suffix="+">0+</div>
+                <div class="stat-label" style="color:rgba(255,255,255,0.5);">Years Open</div>
+            </div>
+            <div class="stat-block aos delay-2" style="border-right:1px solid rgba(255,255,255,0.08);">
+                <div class="stat-number" data-counter data-target="3">0</div>
+                <div class="stat-label" style="color:rgba(255,255,255,0.5);">Master Barbers</div>
+            </div>
+            <div class="stat-block aos delay-3" style="border-right:1px solid rgba(255,255,255,0.08);">
+                <div class="stat-number" data-counter data-target="8500" data-suffix="+">0+</div>
+                <div class="stat-label" style="color:rgba(255,255,255,0.5);">Clients Served</div>
+            </div>
+            <div class="stat-block aos delay-4">
+                <div class="stat-number" data-counter data-target="15" data-suffix="+">0+</div>
+                <div class="stat-label" style="color:rgba(255,255,255,0.5);">Services Offered</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== TEAM ===== -->
+<section class="section bg-alt">
+    <div class="container">
+        <div class="text-center">
+            <div class="section-label aos">Our Team</div>
+            <h2 class="section-title aos delay-1">The Hands Behind Every Cut</h2>
+            <div class="gold-divider"></div>
+            <p class="section-desc aos delay-2">Each barber brings a unique set of skills and a shared commitment to excellence. Get to know the team.</p>
+        </div>
+        <div style="height:56px;"></div>
+        <div class="grid-3">
+            <div class="barber-card aos delay-1">
+                <img src="assets/barber_marcus.png" alt="Marcus Johnson" class="barber-img" loading="lazy">
+                <div class="barber-body">
+                    <h3 class="barber-name">Marcus Johnson</h3>
+                    <div class="barber-role">Master Barber & Co-Founder</div>
+                    <div class="barber-specialties">
+                        <span class="barber-tag">Skin Fades</span><span class="barber-tag">Taper</span><span class="barber-tag">Designs</span>
+                    </div>
+                    <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.7;margin-bottom:20px;">With 15 years of experience and multiple awards, Marcus is the architect behind BarberCo's signature precision style. His work has been featured in GQ and Men's Health.</p>
+                    <div style="display:flex;gap:10px;justify-content:center;">
+                        <a href="#" class="icon-btn" aria-label="Instagram" style="font-size:0.8rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="icon-btn" aria-label="Facebook" style="font-size:0.8rem;"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="barber-card aos delay-2">
+                <img src="assets/barber_daniel.png" alt="Daniel Reyes" class="barber-img" loading="lazy">
+                <div class="barber-body">
+                    <h3 class="barber-name">Daniel Reyes</h3>
+                    <div class="barber-role">Senior Barber — Beard Specialist</div>
+                    <div class="barber-specialties">
+                        <span class="barber-tag">Beards</span><span class="barber-tag">Hot Shave</span><span class="barber-tag">Classic Cuts</span>
+                    </div>
+                    <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.7;margin-bottom:20px;">Daniel's mastery of beard sculpting and straight razor technique makes him a favourite among clients seeking a classic barbershop experience done right.</p>
+                    <div style="display:flex;gap:10px;justify-content:center;">
+                        <a href="#" class="icon-btn" aria-label="Instagram" style="font-size:0.8rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="icon-btn" aria-label="TikTok" style="font-size:0.8rem;"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="barber-card aos delay-3">
+                <img src="assets/barber_james.png" alt="James Carter" class="barber-img" loading="lazy">
+                <div class="barber-body">
+                    <h3 class="barber-name">James Carter</h3>
+                    <div class="barber-role">Senior Barber & Co-Founder</div>
+                    <div class="barber-specialties">
+                        <span class="barber-tag">Coloring</span><span class="barber-tag">Pompadour</span><span class="barber-tag">Styling</span>
+                    </div>
+                    <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.7;margin-bottom:20px;">James combines old-school barbershop tradition with cutting-edge styling. His color work and styled cuts have made him one of the city's most sought-after groomers.</p>
+                    <div style="display:flex;gap:10px;justify-content:center;">
+                        <a href="#" class="icon-btn" aria-label="Instagram" style="font-size:0.8rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="icon-btn" aria-label="YouTube" style="font-size:0.8rem;"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== JOURNEY / TIMELINE ===== -->
+<section class="section">
+    <div class="container">
+        <div class="grid-2" style="gap:60px;align-items:flex-start;">
+            <div class="aos">
+                <div class="section-label">Our Journey</div>
+                <h2 class="section-title">Built Over<br>a Decade of Dedication</h2>
+                <div class="gold-divider"></div>
+                <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.85;margin-bottom:32px;">From two chairs and a dream to downtown's most trusted grooming studio — here are the milestones that shaped us.</p>
+                <div class="timeline">
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">2012</div>
+                        <div class="tl-title">BarberCo Opens Its Doors</div>
+                        <div class="tl-desc">Marcus and James open a two-chair shop on Main Street with nothing but talent, two barber chairs, and an ambitious vision.</div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">2015</div>
+                        <div class="tl-title">Expansion & Daniel Joins</div>
+                        <div class="tl-desc">BarberCo doubles in size. Daniel Reyes joins as Senior Barber, bringing his legendary beard grooming skills to the team.</div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">2019</div>
+                        <div class="tl-title">Best Barbershop Award</div>
+                        <div class="tl-desc">Voted Best Barbershop in the city by Downtown Style Magazine. 5,000+ clients served milestone reached.</div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">2022</div>
+                        <div class="tl-title">Premium Services Launch</div>
+                        <div class="tl-desc">Launched the VIP grooming packages and online booking system. Revenue grew by 60% in one year.</div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-year">2024</div>
+                        <div class="tl-title">City Style Award & 8,500 Clients</div>
+                        <div class="tl-desc">Won the City Style Award for Best Men's Grooming. BarberCo now serves over 8,500 satisfied clients.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="aos delay-2">
+                <img src="assets/service_package.png" alt="BarberCo grooming experience" style="width:100%;border-radius:20px;object-fit:cover;aspect-ratio:3/4;" loading="lazy">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="section-sm bg-alt">
+    <div class="container">
+        <div style="text-align:center;max-width:600px;margin:0 auto;">
+            <h2 class="aos" style="margin-bottom:16px;">Come In & Experience It Yourself</h2>
+            <p class="aos delay-1" style="color:var(--text-muted);margin-bottom:32px;">No appointment needed for walk-ins, or book ahead to guarantee your preferred barber and time.</p>
+            <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;" class="aos delay-2">
+                <a href="contact.html#booking" class="btn btn-primary btn-lg" id="about-book-btn"><i class="fas fa-calendar-check"></i> Book Now</a>
+                <a href="services.html" class="btn btn-secondary btn-lg" id="about-services-btn">Our Services</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="components.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

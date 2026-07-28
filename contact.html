@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact BarberCo — book an appointment, find our location, or get in touch with our team. We're ready to give you your best cut.">
+    <title>Contact | BarberCo Barbershop & Men's Grooming</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%23B8860B' opacity='.15'/%3E%3Ccircle cx='30' cy='32' r='8' fill='none' stroke='%23B8860B' stroke-width='7'/%3E%3Ccircle cx='30' cy='68' r='8' fill='none' stroke='%23B8860B' stroke-width='7'/%3E%3Cline x1='36' y1='37' x2='72' y2='72' stroke='%23B8860B' stroke-width='8' stroke-linecap='round'/%3E%3Cline x1='36' y1='63' x2='72' y2='28' stroke='%23B8860B' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .contact-grid { display:grid; grid-template-columns:1fr 1.5fr; gap:48px; align-items:flex-start; }
+        @media(max-width:1024px){ .contact-grid { grid-template-columns:1fr; } }
+
+        .map-placeholder {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .map-placeholder i { font-size: 2rem; color: var(--primary); }
+        .map-placeholder span { font-weight: 600; }
+
+        /* The booking form section */
+        .contact-form-section {
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 48px 40px;
+        }
+        @media(max-width:768px){ .contact-form-section { padding: 32px 20px; } }
+
+        /* Social links row */
+        .social-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 18px;
+            border: 1.5px solid var(--border);
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        .social-link:hover { border-color: var(--primary); color: var(--primary); }
+        .social-link i { font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+
+<!-- Banner -->
+<div class="page-banner">
+    <img src="assets/about_story.png" alt="BarberCo location" loading="lazy">
+    <div class="page-banner-content">
+        <h1 class="aos">Get in Touch</h1>
+        <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Contact</span></div>
+    </div>
+</div>
+
+<!-- ===== CONTACT INFO + FORM ===== -->
+<section class="section" id="contact">
+    <div class="container">
+        <div class="contact-grid">
+            <!-- Left: Info -->
+            <div class="aos">
+                <div class="section-label">Contact Us</div>
+                <h2 class="section-title" style="font-size:2rem;">Let's Talk Cuts,<br>Beards & Bookings</h2>
+                <div class="gold-divider"></div>
+                <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.85;margin-bottom:32px;">Whether you have a question about our services, want to book a VIP package, or just want to say hello — we'd love to hear from you.</p>
+
+                <div class="contact-info-item">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div>
+                        <div class="contact-info-label">Location</div>
+                        <div class="contact-info-value">24 Main Street, Downtown District<br>New York, NY 10001</div>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                    <div>
+                        <div class="contact-info-label">Phone</div>
+                        <div class="contact-info-value"><a href="tel:+15552478300" style="color:var(--primary);">+1 (555) 247-8300</a></div>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div>
+                        <div class="contact-info-label">Email</div>
+                        <div class="contact-info-value"><a href="mailto:hello@barberco.com" style="color:var(--primary);">hello@barberco.com</a></div>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                    <div>
+                        <div class="contact-info-label">Opening Hours</div>
+                        <div class="contact-info-value">Mon–Fri: 9:00 AM – 8:00 PM<br>Saturday: 8:00 AM – 8:00 PM<br>Sunday: 10:00 AM – 6:00 PM</div>
+                    </div>
+                </div>
+
+                <!-- Map -->
+                <div class="map-placeholder" style="margin-top:28px;">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span>24 Main Street, Downtown District</span>
+                    <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn btn-primary btn-sm" style="margin-top:4px;" id="get-directions-btn"><i class="fas fa-directions"></i> Get Directions</a>
+                </div>
+
+                <!-- Social -->
+                <div style="margin-top:32px;">
+                    <h4 style="font-size:0.85rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:16px;">Follow Us</h4>
+                    <div class="social-row">
+                        <a href="#" class="social-link" id="contact-instagram"><i class="fab fa-instagram"></i> Instagram</a>
+                        <a href="#" class="social-link" id="contact-facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="#" class="social-link" id="contact-tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
+                        <a href="#" class="social-link" id="contact-youtube"><i class="fab fa-youtube"></i> YouTube</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Form -->
+            <div class="contact-form-section aos delay-2" id="booking">
+                <h3 style="margin-bottom:6px;">Book an Appointment</h3>
+                <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:32px;">Fill out the form below and we'll confirm your slot within 2 hours.</p>
+                <form id="contact-form">
+                    <div class="booking-form" style="padding:0;background:none;border:none;box-shadow:none;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="c-fname">First Name</label>
+                                <input type="text" id="c-fname" class="form-input" placeholder="John" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="c-lname">Last Name</label>
+                                <input type="text" id="c-lname" class="form-input" placeholder="Smith" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="c-email">Email Address</label>
+                            <input type="email" id="c-email" class="form-input" placeholder="you@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="c-phone">Phone Number</label>
+                            <input type="tel" id="c-phone" class="form-input" placeholder="+1 555 000 0000">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="c-service">Service Required</label>
+                            <select id="c-service" class="form-input form-select" required>
+                                <option value="">Select a service...</option>
+                                <option>Haircut & Fade</option>
+                                <option>Beard Grooming</option>
+                                <option>Hot Towel Shave</option>
+                                <option>Hair Coloring</option>
+                                <option>Full VIP Package</option>
+                                <option>Kids Haircut</option>
+                                <option>Other / Question</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="c-date">Preferred Date</label>
+                                <input type="date" id="c-date" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="c-time">Preferred Time</label>
+                                <select id="c-time" class="form-input form-select">
+                                    <option value="">Any Time</option>
+                                    <option>Morning (9–12)</option>
+                                    <option>Afternoon (12–4)</option>
+                                    <option>Evening (4–8)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="c-barber">Preferred Barber</label>
+                            <select id="c-barber" class="form-input form-select">
+                                <option value="">No Preference</option>
+                                <option>Marcus Johnson</option>
+                                <option>Daniel Reyes</option>
+                                <option>James Carter</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="c-notes">Additional Notes</label>
+                            <textarea id="c-notes" class="form-input form-textarea" placeholder="Any special requests, reference photos, or notes for your barber..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full" id="contact-submit-btn" style="margin-top:8px;">
+                            <i class="fas fa-calendar-check"></i> Confirm Booking Request
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== GENERAL MESSAGE SECTION ===== -->
+<section class="section bg-alt">
+    <div class="container">
+        <div style="max-width:640px;margin:0 auto;text-align:center;">
+            <div class="section-label aos">Send a Message</div>
+            <h2 class="section-title aos delay-1" style="margin-bottom:16px;">Got a Question?</h2>
+            <div class="gold-divider"></div>
+            <p class="aos delay-2" style="color:var(--text-muted);margin-bottom:36px;">Not ready to book yet? No problem. Send us a message and we'll get back to you within the same business day.</p>
+            <form id="contact-form-general" class="aos delay-3">
+                <div class="form-group">
+                    <label class="form-label" for="g-name">Your Name</label>
+                    <input type="text" id="g-name" class="form-input" placeholder="Your full name" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="g-email">Email Address</label>
+                    <input type="email" id="g-email" class="form-input" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="g-msg">Message</label>
+                    <textarea id="g-msg" class="form-input form-textarea" placeholder="Your message..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" id="general-msg-submit">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="components.js"></script>
+<script src="script.js"></script>
+<script>
+// General contact form
+const gForm = document.getElementById('contact-form-general');
+if (gForm) {
+    gForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = gForm.querySelector('[type=submit]');
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+        setTimeout(() => {
+            btn.textContent = '✓ Message Sent! We\'ll reply soon.';
+            btn.style.background = '#2E7D32';
+            gForm.reset();
+            setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; btn.disabled = false; }, 3500);
+        }, 1000);
+    });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BarberCo gallery — browse our portfolio of precision fades, beard grooming, hot towel shaves and styled cuts by our master barbers.">
+    <title>Gallery | BarberCo Barbershop</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%23B8860B' opacity='.15'/%3E%3Ccircle cx='30' cy='32' r='8' fill='none' stroke='%23B8860B' stroke-width='7'/%3E%3Ccircle cx='30' cy='68' r='8' fill='none' stroke='%23B8860B' stroke-width='7'/%3E%3Cline x1='36' y1='37' x2='72' y2='72' stroke='%23B8860B' stroke-width='8' stroke-linecap='round'/%3E%3Cline x1='36' y1='63' x2='72' y2='28' stroke='%23B8860B' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Filter tabs */
+        .filter-bar {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+        .filter-btn {
+            padding: 9px 22px;
+            border-radius: 999px;
+            border: 1.5px solid var(--border);
+            background: var(--surface-card);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #FFFFFF;
+        }
+
+        /* Masonry-style gallery */
+        .gallery-masonry {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .gallery-masonry .gallery-item:nth-child(4),
+        .gallery-masonry .gallery-item:nth-child(5) {
+            aspect-ratio: 16/9;
+        }
+        .gallery-masonry .gallery-item:nth-child(7) {
+            grid-column: span 2;
+            aspect-ratio: 2/1;
+        }
+        @media(max-width:1024px){ .gallery-masonry { grid-template-columns: repeat(2,1fr); } .gallery-masonry .gallery-item:nth-child(7){ grid-column: span 1; aspect-ratio:1; } }
+        @media(max-width:768px){ .gallery-masonry { grid-template-columns: repeat(2,1fr); } }
+        @media(max-width:480px){ .gallery-masonry { grid-template-columns: 1fr; } }
+
+        /* Insta strip */
+        .insta-strip {
+            background: var(--bg-alt);
+            padding: 48px 0;
+            text-align: center;
+        }
+        .insta-handle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+        .insta-handle i { color: #E1306C; }
+        .insta-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 28px;
+        }
+        .insta-thumb {
+            width: 110px; height: 110px;
+            border-radius: 12px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        .insta-thumb:hover { transform: scale(1.06); box-shadow: var(--shadow-md); }
+        @media(max-width:480px){ .insta-thumb { width:80px; height:80px; } }
+    </style>
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+
+<!-- Banner -->
+<div class="page-banner">
+    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1400&q=80" alt="Gallery banner" loading="lazy">
+    <div class="page-banner-content">
+        <h1 class="aos">Our Work</h1>
+        <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Gallery</span></div>
+    </div>
+</div>
+
+<!-- ===== GALLERY ===== -->
+<section class="section">
+    <div class="container">
+        <div class="text-center" style="margin-bottom:40px;">
+            <div class="section-label aos">Portfolio</div>
+            <h2 class="section-title aos delay-1">Every Cut Tells a Story</h2>
+            <div class="gold-divider"></div>
+            <p class="section-desc aos delay-2">Browse our latest work — precision fades, beard sculpts, classic cuts and more. Each photo is a testament to craft and consistency.</p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="filter-bar aos delay-2">
+            <button class="filter-btn active" data-filter="all" id="filter-all">All Work</button>
+            <button class="filter-btn" data-filter="fades" id="filter-fades">Fades & Tapers</button>
+            <button class="filter-btn" data-filter="beards" id="filter-beards">Beard Grooming</button>
+            <button class="filter-btn" data-filter="classic" id="filter-classic">Classic Cuts</button>
+            <button class="filter-btn" data-filter="styling" id="filter-styling">Styled Looks</button>
+        </div>
+
+        <!-- Masonry Gallery -->
+        <div class="gallery-masonry" id="gallery-grid">
+            <div class="gallery-item aos delay-1" data-cat="fades">
+                <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=700&q=80" alt="Precision skin fade" loading="lazy">
+                <div class="gallery-overlay"><span>Skin Fade</span></div>
+            </div>
+            <div class="gallery-item aos delay-2" data-cat="classic">
+                <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=700&q=80" alt="Classic barbershop cut" loading="lazy">
+                <div class="gallery-overlay"><span>Classic Cut</span></div>
+            </div>
+            <div class="gallery-item aos delay-3" data-cat="beards">
+                <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=700&q=80" alt="Beard grooming result" loading="lazy">
+                <div class="gallery-overlay"><span>Beard Sculpt</span></div>
+            </div>
+            <div class="gallery-item aos delay-1" data-cat="styling">
+                <img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=700&q=80" alt="Textured modern style" loading="lazy">
+                <div class="gallery-overlay"><span>Textured Style</span></div>
+            </div>
+            <div class="gallery-item aos delay-2" data-cat="fades">
+                <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=700&q=80" alt="Mid fade haircut" loading="lazy">
+                <div class="gallery-overlay"><span>Mid Fade</span></div>
+            </div>
+            <div class="gallery-item aos delay-3" data-cat="classic">
+                <img src="https://images.unsplash.com/photo-1517832606299-7ae9b720a176?w=700&q=80" alt="Hot towel shave" loading="lazy">
+                <div class="gallery-overlay"><span>Hot Towel Shave</span></div>
+            </div>
+            <div class="gallery-item aos delay-1" data-cat="styling">
+                <img src="https://images.unsplash.com/photo-1512864084360-7c0e0ec99672?w=700&q=80" alt="Styled quiff" loading="lazy">
+                <div class="gallery-overlay"><span>Styled Quiff</span></div>
+            </div>
+            <div class="gallery-item aos delay-2" data-cat="fades">
+                <img src="assets/gallery_1.png" alt="Modern skin fade cut" loading="lazy">
+                <div class="gallery-overlay"><span>Sharp Fade</span></div>
+            </div>
+            <div class="gallery-item aos delay-3" data-cat="beards">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&q=80" alt="Full beard trim" loading="lazy">
+                <div class="gallery-overlay"><span>Full Beard</span></div>
+            </div>
+            <div class="gallery-item aos delay-1" data-cat="classic">
+                <img src="https://images.unsplash.com/photo-1546961342-ea5f62d5a27e?w=700&q=80" alt="Traditional barbershop cut" loading="lazy">
+                <div class="gallery-overlay"><span>Traditional Cut</span></div>
+            </div>
+            <div class="gallery-item aos delay-2" data-cat="styling">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=700&q=80" alt="Pompadour style" loading="lazy">
+                <div class="gallery-overlay"><span>Pompadour</span></div>
+            </div>
+            <div class="gallery-item aos delay-3" data-cat="fades">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=700&q=80" alt="Low taper fade" loading="lazy">
+                <div class="gallery-overlay"><span>Low Taper</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== INSTAGRAM STRIP ===== -->
+<section class="insta-strip">
+    <div class="container">
+        <p class="text-muted" style="font-size:0.85rem;margin-bottom:4px;">Follow us on Instagram</p>
+        <div class="insta-handle"><i class="fab fa-instagram"></i> @barberco_official</div>
+        <p style="font-size:0.88rem;color:var(--text-muted);">Tag us in your photos with <strong>#BarberCoLook</strong> to be featured here.</p>
+        <div class="insta-row">
+            <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=200&q=80" alt="Instagram post 1" class="insta-thumb" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=200&q=80" alt="Instagram post 2" class="insta-thumb" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=200&q=80" alt="Instagram post 3" class="insta-thumb" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=200&q=80" alt="Instagram post 4" class="insta-thumb" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=200&q=80" alt="Instagram post 5" class="insta-thumb" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1517832606299-7ae9b720a176?w=200&q=80" alt="Instagram post 6" class="insta-thumb" loading="lazy">
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="section">
+    <div class="container">
+        <div style="text-align:center;max-width:600px;margin:0 auto;">
+            <h2 class="aos" style="margin-bottom:16px;">Love What You See?</h2>
+            <p class="aos delay-1" style="color:var(--text-muted);margin-bottom:32px;">Book your appointment and let our master barbers craft your signature look.</p>
+            <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;" class="aos delay-2">
+                <a href="contact.html#booking" class="btn btn-primary btn-lg" id="gallery-book-btn"><i class="fas fa-calendar-check"></i> Book Now</a>
+                <a href="pricing.html" class="btn btn-secondary btn-lg" id="gallery-pricing-btn">See Pricing</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="components.js"></script>
+<script src="script.js"></script>
+<script>
+// Gallery filter
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.dataset.filter;
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            if (filter === 'all' || item.dataset.cat === filter) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BarberCo pricing — transparent, fair pricing for all haircuts, beard grooming, shaves and grooming packages. No hidden fees.">
+    <title>Pricing | BarberCo Barbershop & Men's Grooming</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%23B8860B' opacity='.15'/%3E%3Ccircle cx='30' cy='32' r='8' fill='none' stroke='%23B8860B' stroke-width='7'/%3E%3Ccircle cx='30' cy='68' r='8' fill='none' stroke='%23B8860B' stroke-width='7'/%3E%3Cline x1='36' y1='37' x2='72' y2='72' stroke='%23B8860B' stroke-width='8' stroke-linecap='round'/%3E%3Cline x1='36' y1='63' x2='72' y2='28' stroke='%23B8860B' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Pricing grid centered when 3 cards */
+        .pricing-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            align-items: start;
+        }
+        @media(max-width:1024px){ .pricing-grid-3 { grid-template-columns: 1fr; max-width:480px; margin:0 auto; } }
+        @media(max-width:600px){ .pricing-grid-3 { max-width:100%; } }
+
+        /* Service price table */
+        .price-table {
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+        }
+        .price-table-head {
+            background: var(--secondary-dark);
+            padding: 20px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .price-table-head-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+        .price-table-head-icon { color: var(--primary-light); font-size: 1.1rem; }
+        .price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 28px;
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition-fast);
+        }
+        .price-row:last-child { border-bottom: none; }
+        .price-row:hover { background: var(--bg-alt); }
+        .price-row-name { font-size: 0.9rem; font-weight: 500; color: var(--text-dark); }
+        .price-row-duration { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+        .price-row-amount {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        /* FAQ */
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin-bottom: 12px;
+            transition: var(--transition);
+        }
+        .faq-item:hover { border-color: var(--primary-glow); }
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 24px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            background: var(--surface-card);
+            user-select: none;
+            gap: 12px;
+        }
+        .faq-question i { color: var(--primary); transition: var(--transition); flex-shrink: 0; }
+        .faq-answer {
+            display: none;
+            padding: 0 24px 18px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            background: var(--surface-card);
+        }
+        .faq-item.open .faq-question i { transform: rotate(45deg); }
+        .faq-item.open .faq-answer { display: block; }
+    </style>
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+
+<!-- Banner -->
+<div class="page-banner">
+    <img src="assets/service_package.png" alt="BarberCo pricing" loading="lazy">
+    <div class="page-banner-content">
+        <h1 class="aos">Pricing</h1>
+        <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Pricing</span></div>
+    </div>
+</div>
+
+<!-- ===== INTRO ===== -->
+<section class="section-sm">
+    <div class="container text-center">
+        <div class="section-label aos">Transparent Pricing</div>
+        <h2 class="section-title aos delay-1">No Hidden Fees. Just Great Value.</h2>
+        <div class="gold-divider"></div>
+        <p class="section-desc aos delay-2">Every price listed is what you pay. We believe great grooming should be accessible — no surprises at the till.</p>
+    </div>
+</section>
+
+<!-- ===== MEMBERSHIP PLANS ===== -->
+<section class="section bg-alt">
+    <div class="container">
+        <div class="text-center" style="margin-bottom:56px;">
+            <div class="section-label aos">Membership Plans</div>
+            <h2 class="section-title aos delay-1">Choose Your Plan</h2>
+            <div class="gold-divider"></div>
+            <p class="section-desc aos delay-2">Become a BarberCo member and save on every visit. Choose the plan that fits your grooming frequency.</p>
+        </div>
+        <div class="pricing-grid-3 aos delay-1">
+            <!-- Essential -->
+            <div class="pricing-card">
+                <div class="pricing-name">Essential</div>
+                <div class="pricing-price">
+                    <span class="pricing-currency">$</span>
+                    <span class="pricing-amount">49</span>
+                </div>
+                <div class="pricing-period">per month</div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check-circle"></i> 2 Haircuts per month</li>
+                    <li><i class="fas fa-check-circle"></i> 10% off beard services</li>
+                    <li><i class="fas fa-check-circle"></i> Priority booking</li>
+                    <li><i class="fas fa-check-circle"></i> Members-only offers</li>
+                    <li class="disabled"><i class="fas fa-times-circle"></i> Free scalp treatment</li>
+                    <li class="disabled"><i class="fas fa-times-circle"></i> Dedicated barber</li>
+                    <li class="disabled"><i class="fas fa-times-circle"></i> VIP lounge access</li>
+                </ul>
+                <a href="contact.html#booking" class="btn btn-secondary btn-full" id="plan-essential-btn">Get Started</a>
+            </div>
+
+            <!-- Popular -->
+            <div class="pricing-card popular">
+                <div class="popular-badge">Most Popular</div>
+                <div class="pricing-name">Signature</div>
+                <div class="pricing-price">
+                    <span class="pricing-currency">$</span>
+                    <span class="pricing-amount">89</span>
+                </div>
+                <div class="pricing-period">per month</div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check-circle"></i> 4 Haircuts per month</li>
+                    <li><i class="fas fa-check-circle"></i> 20% off all services</li>
+                    <li><i class="fas fa-check-circle"></i> Priority booking</li>
+                    <li><i class="fas fa-check-circle"></i> Members-only offers</li>
+                    <li><i class="fas fa-check-circle"></i> 1 Free scalp treatment/mo</li>
+                    <li><i class="fas fa-check-circle"></i> Dedicated barber</li>
+                    <li class="disabled"><i class="fas fa-times-circle"></i> VIP lounge access</li>
+                </ul>
+                <a href="contact.html#booking" class="btn btn-primary btn-full" id="plan-signature-btn">Get Started</a>
+            </div>
+
+            <!-- Premium -->
+            <div class="pricing-card">
+                <div class="pricing-name">VIP Elite</div>
+                <div class="pricing-price">
+                    <span class="pricing-currency">$</span>
+                    <span class="pricing-amount">149</span>
+                </div>
+                <div class="pricing-period">per month</div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check-circle"></i> Unlimited Haircuts</li>
+                    <li><i class="fas fa-check-circle"></i> 30% off all services</li>
+                    <li><i class="fas fa-check-circle"></i> Priority booking</li>
+                    <li><i class="fas fa-check-circle"></i> Members-only offers</li>
+                    <li><i class="fas fa-check-circle"></i> Free scalp treatment/mo</li>
+                    <li><i class="fas fa-check-circle"></i> Dedicated barber</li>
+                    <li><i class="fas fa-check-circle"></i> VIP lounge access</li>
+                </ul>
+                <a href="contact.html#booking" class="btn btn-secondary btn-full" id="plan-vip-btn">Get Started</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== A LA CARTE PRICING ===== -->
+<section class="section">
+    <div class="container">
+        <div class="text-center" style="margin-bottom:56px;">
+            <div class="section-label aos">À La Carte</div>
+            <h2 class="section-title aos delay-1">Individual Service Prices</h2>
+            <div class="gold-divider"></div>
+        </div>
+        <div class="grid-2" style="gap:28px;">
+            <!-- Haircuts -->
+            <div class="price-table aos delay-1">
+                <div class="price-table-head">
+                    <div class="price-table-head-title">Haircuts & Fades</div>
+                    <i class="fas fa-cut price-table-head-icon"></i>
+                </div>
+                <div class="price-row"><div><div class="price-row-name">Classic Haircut</div><div class="price-row-duration">30–40 min</div></div><div class="price-row-amount">$25</div></div>
+                <div class="price-row"><div><div class="price-row-name">Skin Fade</div><div class="price-row-duration">35–45 min</div></div><div class="price-row-amount">$32</div></div>
+                <div class="price-row"><div><div class="price-row-name">Low / Mid / High Taper</div><div class="price-row-duration">30–40 min</div></div><div class="price-row-amount">$28</div></div>
+                <div class="price-row"><div><div class="price-row-name">Scissor Cut</div><div class="price-row-duration">40–50 min</div></div><div class="price-row-amount">$35</div></div>
+                <div class="price-row"><div><div class="price-row-name">Design / Line Art</div><div class="price-row-duration">15–20 min add-on</div></div><div class="price-row-amount">+$15</div></div>
+                <div class="price-row"><div><div class="price-row-name">Kids Cut (Under 12)</div><div class="price-row-duration">20–30 min</div></div><div class="price-row-amount">$18</div></div>
+            </div>
+            <!-- Beard & Shave -->
+            <div class="price-table aos delay-2">
+                <div class="price-table-head">
+                    <div class="price-table-head-title">Beard & Shave</div>
+                    <i class="fas fa-user-tie price-table-head-icon"></i>
+                </div>
+                <div class="price-row"><div><div class="price-row-name">Beard Trim & Shape</div><div class="price-row-duration">20–30 min</div></div><div class="price-row-amount">$18</div></div>
+                <div class="price-row"><div><div class="price-row-name">Full Beard Sculpt</div><div class="price-row-duration">30–40 min</div></div><div class="price-row-amount">$25</div></div>
+                <div class="price-row"><div><div class="price-row-name">Classic Shave</div><div class="price-row-duration">30–35 min</div></div><div class="price-row-amount">$30</div></div>
+                <div class="price-row"><div><div class="price-row-name">Hot Towel Straight Razor Shave</div><div class="price-row-duration">40–50 min</div></div><div class="price-row-amount">$42</div></div>
+                <div class="price-row"><div><div class="price-row-name">Beard Oil Treatment</div><div class="price-row-duration">10 min add-on</div></div><div class="price-row-amount">+$10</div></div>
+                <div class="price-row"><div><div class="price-row-name">Moustache Trim</div><div class="price-row-duration">10 min</div></div><div class="price-row-amount">$12</div></div>
+            </div>
+            <!-- Treatments -->
+            <div class="price-table aos delay-1">
+                <div class="price-table-head">
+                    <div class="price-table-head-title">Treatments & Extras</div>
+                    <i class="fas fa-spa price-table-head-icon"></i>
+                </div>
+                <div class="price-row"><div><div class="price-row-name">Scalp Treatment & Massage</div><div class="price-row-duration">25–35 min</div></div><div class="price-row-amount">$30</div></div>
+                <div class="price-row"><div><div class="price-row-name">Style & Blow-Dry</div><div class="price-row-duration">15–20 min</div></div><div class="price-row-amount">$20</div></div>
+                <div class="price-row"><div><div class="price-row-name">Eyebrow Tidy</div><div class="price-row-duration">10 min</div></div><div class="price-row-amount">$10</div></div>
+                <div class="price-row"><div><div class="price-row-name">Nose & Ear Wax</div><div class="price-row-duration">10 min</div></div><div class="price-row-amount">$12</div></div>
+                <div class="price-row"><div><div class="price-row-name">Neck Cleanup (between visits)</div><div class="price-row-duration">10 min</div></div><div class="price-row-amount">$10</div></div>
+            </div>
+            <!-- Color -->
+            <div class="price-table aos delay-2">
+                <div class="price-table-head">
+                    <div class="price-table-head-title">Hair Coloring</div>
+                    <i class="fas fa-palette price-table-head-icon"></i>
+                </div>
+                <div class="price-row"><div><div class="price-row-name">Grey Blending</div><div class="price-row-duration">45–60 min</div></div><div class="price-row-amount">$55</div></div>
+                <div class="price-row"><div><div class="price-row-name">Full Color</div><div class="price-row-duration">60–80 min</div></div><div class="price-row-amount">$75</div></div>
+                <div class="price-row"><div><div class="price-row-name">Highlights / Lowlights</div><div class="price-row-duration">75–90 min</div></div><div class="price-row-amount">$85</div></div>
+                <div class="price-row"><div><div class="price-row-name">Balayage / Fade Color</div><div class="price-row-duration">90+ min</div></div><div class="price-row-amount">$110</div></div>
+                <div class="price-row"><div><div class="price-row-name">Toner / Gloss Treatment</div><div class="price-row-duration">30 min</div></div><div class="price-row-amount">$35</div></div>
+            </div>
+        </div>
+
+        <!-- Package table -->
+        <div style="margin-top:40px;">
+            <div class="price-table aos">
+                <div class="price-table-head">
+                    <div class="price-table-head-title">Grooming Packages (Best Value)</div>
+                    <i class="fas fa-star price-table-head-icon"></i>
+                </div>
+                <div class="price-row"><div><div class="price-row-name">The Classic Gentleman — Haircut + Neck Shave + Hot Towel Finish</div><div class="price-row-duration">50–60 min</div></div><div class="price-row-amount">$38</div></div>
+                <div class="price-row"><div><div class="price-row-name">The Modern Executive — Fade + Beard Sculpt + Straight Razor Shave</div><div class="price-row-duration">70–80 min</div></div><div class="price-row-amount">$65</div></div>
+                <div class="price-row"><div><div class="price-row-name">The Full VIP Treatment — Complete Grooming + Scalp + Styling</div><div class="price-row-duration">90–120 min</div></div><div class="price-row-amount">$95</div></div>
+                <div class="price-row"><div><div class="price-row-name">Father & Son — 2 Haircuts (Adult + Child)</div><div class="price-row-duration">60 min</div></div><div class="price-row-amount">$40</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section bg-alt">
+    <div class="container">
+        <div class="grid-2" style="gap:64px;align-items:flex-start;">
+            <div class="aos">
+                <div class="section-label">FAQ</div>
+                <h2 class="section-title">Pricing Questions<br>Answered</h2>
+                <div class="gold-divider"></div>
+                <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.85;">Have more questions? We're always happy to help. Reach out via phone or visit us in store.</p>
+                <a href="contact.html" class="btn btn-outline-gold" style="margin-top:24px;" id="pricing-contact-btn">Contact Us</a>
+            </div>
+            <div class="aos delay-2">
+                <div class="faq-item" id="faq-1">
+                    <div class="faq-question" onclick="toggleFAQ('faq-1')">Do I need to tip? <i class="fas fa-plus"></i></div>
+                    <div class="faq-answer">Tipping is always appreciated but never expected. Our barbers earn a competitive wage — tip only if you feel the service exceeded expectations.</div>
+                </div>
+                <div class="faq-item" id="faq-2">
+                    <div class="faq-question" onclick="toggleFAQ('faq-2')">Do you accept walk-ins? <i class="fas fa-plus"></i></div>
+                    <div class="faq-answer">Absolutely! Walk-ins are welcome any time during business hours. During peak hours (Fri–Sat) we recommend booking ahead to guarantee your preferred barber.</div>
+                </div>
+                <div class="faq-item" id="faq-3">
+                    <div class="faq-question" onclick="toggleFAQ('faq-3')">What's your cancellation policy? <i class="fas fa-plus"></i></div>
+                    <div class="faq-answer">We ask for at least 4 hours notice for cancellations. Late cancellations may incur a 50% fee to protect our barbers' time. No-shows are charged in full.</div>
+                </div>
+                <div class="faq-item" id="faq-4">
+                    <div class="faq-question" onclick="toggleFAQ('faq-4')">Can I pay with card or only cash? <i class="fas fa-plus"></i></div>
+                    <div class="faq-answer">We accept all major credit/debit cards, Apple Pay, Google Pay, and good old cash. No surcharges on card payments.</div>
+                </div>
+                <div class="faq-item" id="faq-5">
+                    <div class="faq-question" onclick="toggleFAQ('faq-5')">Do membership plans auto-renew? <i class="fas fa-plus"></i></div>
+                    <div class="faq-answer">Yes, plans auto-renew monthly. You can cancel anytime with no penalty — we'll complete your current month and cancel the next renewal. No lock-in contracts.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+    <div class="container">
+        <div style="text-align:center;max-width:600px;margin:0 auto;">
+            <h2 class="aos" style="margin-bottom:16px;">Ready for Your Next Cut?</h2>
+            <p class="aos delay-1" style="color:var(--text-muted);margin-bottom:32px;">Book online in seconds or give us a call. Walk-ins always welcome.</p>
+            <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;" class="aos delay-2">
+                <a href="contact.html#booking" class="btn btn-primary btn-lg" id="pricing-book-btn"><i class="fas fa-calendar-check"></i> Book Appointment</a>
+                <a href="tel:+15552478300" class="btn btn-secondary btn-lg" id="pricing-call-btn"><i class="fas fa-phone"></i> Call Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="components.js"></script>
+<script src="script.js"></script>
+<script>
+function toggleFAQ(id) {
+    const item = document.getElementById(id);
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>

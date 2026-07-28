@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BarberCo Premium — Experience the pinnacle of men's grooming. Cinematic atmosphere, master barbers, and bespoke grooming packages.">
+    <title>Home 2 — Premium | BarberCo Barbershop</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%23B8860B' opacity='.15'/%3E%3Ccircle cx='30' cy='32' r='8' fill='none' stroke='%23B8860B' stroke-width='7'/%3E%3Ccircle cx='30' cy='68' r='8' fill='none' stroke='%23B8860B' stroke-width='7'/%3E%3Cline x1='36' y1='37' x2='72' y2='72' stroke='%23B8860B' stroke-width='8' stroke-linecap='round'/%3E%3Cline x1='36' y1='63' x2='72' y2='28' stroke='%23B8860B' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ===== HERO — Split Screen ===== */
+        .hero2 {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+        }
+        .hero2-left {
+            background: var(--secondary-dark);
+            display: flex;
+            align-items: center;
+            padding: 100px 60px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero2-left::before {
+            content: '';
+            position: absolute;
+            top: -120px; left: -120px;
+            width: 400px; height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(184,134,11,0.12) 0%, transparent 70%);
+        }
+        .hero2-left::after {
+            content: '';
+            position: absolute;
+            bottom: -80px; right: -80px;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(184,134,11,0.08) 0%, transparent 70%);
+        }
+        .hero2-content { position: relative; z-index: 2; }
+        .hero2-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .hero2-line {
+            width: 40px; height: 2px;
+            background: var(--primary);
+        }
+        .hero2-eyebrow-text {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--primary-light);
+        }
+        .hero2-title {
+            font-size: clamp(2.5rem, 5vw, 4.2rem);
+            font-weight: 900;
+            color: #FFFFFF;
+            line-height: 1.06;
+            margin-bottom: 24px;
+        }
+        .hero2-title em {
+            font-style: italic;
+            color: var(--primary-light);
+        }
+        .hero2-desc {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.85;
+            margin-bottom: 40px;
+            max-width: 440px;
+        }
+        .hero2-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+        .hero2-awards {
+            display: flex;
+            gap: 28px;
+            margin-top: 56px;
+            padding-top: 36px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            flex-wrap: wrap;
+        }
+        .hero2-award {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .hero2-award-icon {
+            width: 40px; height: 40px;
+            border-radius: 8px;
+            background: rgba(184,134,11,0.15);
+            border: 1px solid rgba(184,134,11,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-light);
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .hero2-award-text { font-size: 0.8rem; color: rgba(255,255,255,0.6); line-height: 1.4; }
+        .hero2-award-text strong { display: block; color: #FFFFFF; font-size: 0.88rem; }
+
+        .hero2-right {
+            position: relative;
+            overflow: hidden;
+        }
+        .hero2-right img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .hero2-right-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(17,17,17,0.3) 0%, transparent 40%);
+        }
+        .hero2-floating-card {
+            position: absolute;
+            bottom: 40px; left: -20px;
+            background: rgba(17,17,17,0.88);
+            border: 1px solid rgba(184,134,11,0.35);
+            border-radius: 16px;
+            padding: 18px 22px;
+            backdrop-filter: blur(12px);
+            min-width: 200px;
+        }
+        .hero2-fc-label { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--primary-light); font-weight: 700; margin-bottom: 4px; }
+        .hero2-fc-value { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 800; color: #FFFFFF; line-height: 1; }
+        .hero2-fc-sub { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-top: 2px; }
+        @media (max-width: 1024px) {
+            .hero2 { grid-template-columns: 1fr; }
+            .hero2-right { height: 55vh; }
+            .hero2-left { padding: 80px 32px 60px; }
+            .hero2-floating-card { display: none; }
+        }
+        @media (max-width: 768px) {
+            .hero2-left { padding: 70px 20px 50px; }
+            .hero2-right { height: 45vh; }
+        }
+
+        /* ===== Experience Section ===== */
+        .experience-section {
+            background: var(--secondary-dark);
+            padding: 96px 0;
+        }
+        .experience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .exp-img-stack {
+            position: relative;
+            height: 520px;
+        }
+        .exp-img-main {
+            position: absolute;
+            top: 0; left: 0;
+            width: 72%;
+            height: 85%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+        .exp-img-accent {
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 55%;
+            height: 55%;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 4px solid var(--secondary-dark);
+        }
+        .exp-badge {
+            position: absolute;
+            top: 44%;
+            left: 60%;
+            transform: translate(-50%, -50%);
+            background: var(--primary);
+            color: #FFFFFF;
+            border-radius: 16px;
+            padding: 18px 22px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(184,134,11,0.5);
+            min-width: 110px;
+        }
+        .exp-badge-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+        .exp-badge-text { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; opacity: 0.85; margin-top: 2px; }
+        @media (max-width: 1024px) {
+            .experience-grid { grid-template-columns: 1fr; gap: 40px; }
+            .exp-img-stack { height: 360px; }
+        }
+        @media (max-width: 768px) {
+            .exp-img-stack { height: 280px; }
+            .exp-img-main { width: 78%; height: 80%; }
+        }
+
+        /* ===== Process Steps ===== */
+        .process-step {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+        .step-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: rgba(184,134,11,0.2);
+            line-height: 1;
+            flex-shrink: 0;
+            width: 60px;
+            text-align: center;
+        }
+        .step-content h4 { color: #FFFFFF; margin-bottom: 8px; }
+        .step-content p { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+
+        /* ===== Premium Packages ===== */
+        .package-card {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            transition: var(--transition);
+        }
+        .package-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-gold); }
+        .package-img {
+            width: 100%; height: 260px;
+            object-fit: cover;
+            display: block;
+        }
+        .package-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.3) 55%, transparent 100%);
+        }
+        .package-content {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 24px;
+        }
+        .package-tag {
+            display: inline-block;
+            background: var(--primary);
+            color: #FFF;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 999px;
+            margin-bottom: 10px;
+        }
+        .package-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 4px;
+        }
+        .package-price {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--primary-light);
+            font-family: 'Playfair Display', serif;
+        }
+        .package-desc { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 4px; }
+
+        /* ===== Marquee ===== */
+        .marquee-section {
+            background: var(--primary);
+            padding: 18px 0;
+            overflow: hidden;
+        }
+        .marquee-track {
+            display: flex;
+            gap: 48px;
+            white-space: nowrap;
+            animation: marqueeScroll 18s linear infinite;
+        }
+        .marquee-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255,255,255,0.9);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+        .marquee-item i { font-size: 0.8rem; }
+        @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    </style>
+</head>
+<body>
+
+<div id="navbar-placeholder"></div>
+
+<!-- ===== HERO SPLIT ===== -->
+<section class="hero2" id="hero2">
+    <div class="hero2-left">
+        <div class="hero2-content">
+            <div class="hero2-eyebrow">
+                <div class="hero2-line"></div>
+                <span class="hero2-eyebrow-text">Premium Men's Grooming</span>
+            </div>
+            <h1 class="hero2-title">
+                Where Style<br>Meets <em>Craft</em>
+            </h1>
+            <p class="hero2-desc">
+                We don't just cut hair — we shape confidence. Every visit is a bespoke experience designed around you, with zero compromise on quality.
+            </p>
+            <div class="hero2-actions">
+                <a href="contact.html#booking" class="btn btn-primary btn-lg" id="h2-book-btn">
+                    <i class="fas fa-calendar-alt"></i> Reserve Your Chair
+                </a>
+                <a href="gallery.html" class="btn btn-secondary btn-lg" id="h2-gallery-btn" style="border-color:rgba(255,255,255,0.2);color:#FFFFFF;">
+                    View Our Work
+                </a>
+            </div>
+            <div class="hero2-awards">
+                <div class="hero2-award">
+                    <div class="hero2-award-icon"><i class="fas fa-trophy"></i></div>
+                    <div class="hero2-award-text"><strong>Best Barbershop 2024</strong>City Style Awards</div>
+                </div>
+                <div class="hero2-award">
+                    <div class="hero2-award-icon"><i class="fas fa-star"></i></div>
+                    <div class="hero2-award-text"><strong>4.9 / 5 Stars</strong>Over 500 Reviews</div>
+                </div>
+                <div class="hero2-award">
+                    <div class="hero2-award-icon"><i class="fas fa-users"></i></div>
+                    <div class="hero2-award-text"><strong>8,500+ Clients</strong>Since 2012</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hero2-right">
+        <img src="assets/hero_home2.png" alt="Premium barbershop grooming experience" class="hero-parallax-img">
+        <div class="hero2-right-overlay"></div>
+        <div class="hero2-floating-card">
+            <div class="hero2-fc-label">Next Available Slot</div>
+            <div class="hero2-fc-value">Today, 3:30 PM</div>
+            <div class="hero2-fc-sub">With Marcus Johnson</div>
+        </div>
+    </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-section">
+    <div class="marquee-track">
+        <div class="marquee-item"><i class="fas fa-cut"></i> Precision Fades</div>
+        <div class="marquee-item"><i class="fas fa-star"></i> Premium Experience</div>
+        <div class="marquee-item"><i class="fas fa-user-tie"></i> Beard Artistry</div>
+        <div class="marquee-item"><i class="fas fa-spa"></i> Hot Towel Shave</div>
+        <div class="marquee-item"><i class="fas fa-medal"></i> Master Barbers</div>
+        <div class="marquee-item"><i class="fas fa-palette"></i> Hair Coloring</div>
+        <div class="marquee-item"><i class="fas fa-clock"></i> Book Online</div>
+        <div class="marquee-item"><i class="fas fa-map-marker-alt"></i> Downtown Location</div>
+        <!-- Duplicate for seamless loop -->
+        <div class="marquee-item"><i class="fas fa-cut"></i> Precision Fades</div>
+        <div class="marquee-item"><i class="fas fa-star"></i> Premium Experience</div>
+        <div class="marquee-item"><i class="fas fa-user-tie"></i> Beard Artistry</div>
+        <div class="marquee-item"><i class="fas fa-spa"></i> Hot Towel Shave</div>
+        <div class="marquee-item"><i class="fas fa-medal"></i> Master Barbers</div>
+        <div class="marquee-item"><i class="fas fa-palette"></i> Hair Coloring</div>
+        <div class="marquee-item"><i class="fas fa-clock"></i> Book Online</div>
+        <div class="marquee-item"><i class="fas fa-map-marker-alt"></i> Downtown Location</div>
+    </div>
+</div>
+
+<!-- ===== EXPERIENCE SECTION ===== -->
+<section class="experience-section">
+    <div class="container">
+        <div class="experience-grid">
+            <div class="exp-img-stack aos">
+                <img src="assets/about_story.png" alt="BarberCo shop interior" class="exp-img-main" loading="lazy">
+                <img src="assets/service_shave.png" alt="Hot towel shave service" class="exp-img-accent" loading="lazy">
+                <div class="exp-badge">
+                    <div class="exp-badge-num">12+</div>
+                    <div class="exp-badge-text">Years of Craft</div>
+                </div>
+            </div>
+            <div class="aos delay-2">
+                <div class="section-label">Our Story</div>
+                <h2 class="section-title" style="color:#FFFFFF;">Rooted in Craft,<br>Driven by Passion</h2>
+                <div class="gold-divider"></div>
+                <div class="process-step">
+                    <div class="step-num">01</div>
+                    <div class="step-content">
+                        <h4>Book Your Experience</h4>
+                        <p>Reserve your preferred time slot online or simply walk in — we'll be ready with a fresh cut and warm hospitality.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">02</div>
+                    <div class="step-content">
+                        <h4>Consultation & Style Planning</h4>
+                        <p>Your barber takes time to understand your face shape, lifestyle and goals before touching a single hair.</p>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">03</div>
+                    <div class="step-content">
+                        <h4>Precision Execution</h4>
+                        <p>Using premium tools and techniques, your barber delivers a cut and style that's uniquely yours.</p>
+                    </div>
+                </div>
+                <a href="about.html" class="btn btn-primary" id="h2-about-link"><i class="fas fa-arrow-right"></i> Our Full Story</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PREMIUM PACKAGES ===== -->
+<section class="section bg-alt">
+    <div class="container">
+        <div class="text-center">
+            <div class="section-label aos">Curated Packages</div>
+            <h2 class="section-title aos delay-1">Bespoke Grooming Packages</h2>
+            <div class="gold-divider"></div>
+            <p class="section-desc aos delay-2">Hand-crafted service bundles for every type of gentleman.</p>
+        </div>
+        <div style="height:48px;"></div>
+        <div class="grid-3">
+            <div class="package-card aos delay-1">
+                <img src="assets/service_haircut.png" alt="Essential package" class="package-img" loading="lazy">
+                <div class="package-overlay"></div>
+                <div class="package-content">
+                    <span class="package-tag">Essential</span>
+                    <div class="package-name">The Classic Gentleman</div>
+                    <div class="package-price">$38</div>
+                    <div class="package-desc">Haircut + neck shave + hot towel finish</div>
+                </div>
+            </div>
+            <div class="package-card aos delay-2">
+                <img src="assets/service_beard.png" alt="Signature package" class="package-img" loading="lazy">
+                <div class="package-overlay"></div>
+                <div class="package-content">
+                    <span class="package-tag" style="background:#FFFFFF;color:#111;">Signature</span>
+                    <div class="package-name">The Modern Executive</div>
+                    <div class="package-price">$65</div>
+                    <div class="package-desc">Fade + beard sculpt + straight razor shave</div>
+                </div>
+            </div>
+            <div class="package-card aos delay-3">
+                <img src="assets/service_package.png" alt="Premium package" class="package-img" loading="lazy">
+                <div class="package-overlay"></div>
+                <div class="package-content">
+                    <span class="package-tag">Premium</span>
+                    <div class="package-name">The Full VIP Treatment</div>
+                    <div class="package-price">$95</div>
+                    <div class="package-desc">Full grooming + scalp massage + premium styling</div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:36px;">
+            <a href="pricing.html" class="btn btn-outline-gold btn-lg" id="h2-pricing-link">See All Packages & Pricing</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== GALLERY SHOWCASE ===== -->
+<section class="section" style="background:var(--secondary-dark);">
+    <div class="container">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:48px;">
+            <div>
+                <div class="section-label aos">Portfolio</div>
+                <h2 class="section-title aos delay-1" style="color:#FFFFFF;">Our Work Speaks<br>for Itself</h2>
+                <div class="gold-divider"></div>
+            </div>
+            <a href="gallery.html" class="btn btn-outline-gold aos" id="h2-gallery-link">Full Gallery</a>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item aos delay-1">
+                <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80" alt="Barbershop cut 1" loading="lazy">
+                <div class="gallery-overlay"><span>Fade & Taper</span></div>
+            </div>
+            <div class="gallery-item aos delay-2">
+                <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=600&q=80" alt="Barbershop cut 2" loading="lazy">
+                <div class="gallery-overlay"><span>Beard Trim</span></div>
+            </div>
+            <div class="gallery-item aos delay-3">
+                <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&q=80" alt="Barbershop cut 3" loading="lazy">
+                <div class="gallery-overlay"><span>Razor Line-Up</span></div>
+            </div>
+            <div class="gallery-item aos delay-1">
+                <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&q=80" alt="Barbershop cut 4" loading="lazy">
+                <div class="gallery-overlay"><span>Classic Cut</span></div>
+            </div>
+            <div class="gallery-item aos delay-2">
+                <img src="https://images.unsplash.com/photo-1512864084360-7c0e0ec99672?w=600&q=80" alt="Barbershop cut 5" loading="lazy">
+                <div class="gallery-overlay"><span>Styled Quiff</span></div>
+            </div>
+            <div class="gallery-item aos delay-3">
+                <img src="assets/gallery_1.png" alt="Modern fade cut" loading="lazy">
+                <div class="gallery-overlay"><span>Skin Fade</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="section">
+    <div class="container">
+        <div class="text-center">
+            <div class="section-label aos">Reviews</div>
+            <h2 class="section-title aos delay-1">Trusted by Thousands<br>of Gentlemen</h2>
+            <div class="gold-divider"></div>
+        </div>
+        <div style="height:48px;"></div>
+        <div class="grid-3">
+            <div class="testimonial-card aos delay-1">
+                <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <div class="testimonial-quote">&ldquo;</div>
+                <p class="testimonial-text">The VIP treatment is genuinely unlike anything I've experienced. It's a full relaxation ritual and the cut is always immaculate. Worth every dollar.</p>
+                <div class="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="James W." class="testimonial-avatar" loading="lazy">
+                    <div>
+                        <div class="testimonial-name">James Wellington</div>
+                        <div class="testimonial-role">VIP Client</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card aos delay-2">
+                <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <div class="testimonial-quote">&ldquo;</div>
+                <p class="testimonial-text">I've been coming every two weeks since 2019. Consistency, quality, and genuine care for each client — this place sets the bar for what a barbershop should be.</p>
+                <div class="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=100&q=80" alt="Samuel D." class="testimonial-avatar" loading="lazy">
+                    <div>
+                        <div class="testimonial-name">Samuel Diaz</div>
+                        <div class="testimonial-role">Loyal Since 2019</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card aos delay-3">
+                <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <div class="testimonial-quote">&ldquo;</div>
+                <p class="testimonial-text">Walked in for a basic trim and walked out with the best haircut of my life. The whole experience felt curated just for me. Absolutely recommend BarberCo.</p>
+                <div class="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&q=80" alt="Chris M." class="testimonial-avatar" loading="lazy">
+                    <div>
+                        <div class="testimonial-name">Christopher Miles</div>
+                        <div class="testimonial-role">Regular Client</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="section-sm" style="background:var(--secondary-dark);">
+    <div class="container">
+        <div style="text-align:center;max-width:660px;margin:0 auto;">
+            <div class="section-label aos">Ready?</div>
+            <h2 class="aos delay-1" style="color:#FFFFFF;margin-bottom:16px;">Book Your Premium Experience Today</h2>
+            <p class="aos delay-2" style="color:rgba(255,255,255,0.55);margin-bottom:36px;">Slots fill fast — especially on weekends. Reserve yours now and step into a cut that defines you.</p>
+            <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;" class="aos delay-3">
+                <a href="contact.html#booking" class="btn btn-primary btn-lg" id="h2-cta-book"><i class="fas fa-calendar-check"></i> Book Appointment</a>
+                <a href="pricing.html" class="btn btn-outline-gold btn-lg" id="h2-cta-pricing">View Pricing</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="components.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

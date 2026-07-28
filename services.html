@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BarberCo services — haircuts, fades, beard grooming, hot towel shaves, hair coloring, kids cuts and full grooming packages. Expert barbershop services in downtown.">
+    <title>Services | BarberCo Barbershop & Men's Grooming</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='14' fill='%23B8860B' opacity='.15'/%3E%3Ccircle cx='30' cy='32' r='8' fill='none' stroke='%23B8860B' stroke-width='7'/%3E%3Ccircle cx='30' cy='68' r='8' fill='none' stroke='%23B8860B' stroke-width='7'/%3E%3Cline x1='36' y1='37' x2='72' y2='72' stroke='%23B8860B' stroke-width='8' stroke-linecap='round'/%3E%3Cline x1='36' y1='63' x2='72' y2='28' stroke='%23B8860B' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Process banner */
+        .process-band {
+            background: var(--secondary-dark);
+            padding: 48px 0;
+        }
+        .process-steps-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            flex-wrap: wrap;
+        }
+        .proc-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0 32px;
+            flex: 1;
+            min-width: 160px;
+        }
+        .proc-num {
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #FFF;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            flex-shrink: 0;
+        }
+        .proc-title { font-size: 0.88rem; font-weight: 700; color: #FFFFFF; margin-bottom: 6px; }
+        .proc-desc { font-size: 0.78rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
+        .proc-arrow { color: var(--primary); font-size: 1.2rem; flex-shrink: 0; padding: 0 8px; }
+        @media(max-width:768px){ .proc-arrow { display:none; } }
+
+        /* Service detail card (full width) */
+        .svc-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 32px;
+            transition: var(--transition);
+        }
+        .svc-detail:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+        .svc-detail.reverse { direction: rtl; }
+        .svc-detail.reverse > * { direction: ltr; }
+        .svc-detail-img { width:100%; height:360px; object-fit:cover; display:block; }
+        .svc-detail-body {
+            padding: 48px 40px;
+            background: var(--surface-card);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .svc-includes {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0 24px;
+        }
+        .svc-includes-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.88rem;
+            color: var(--text-body);
+        }
+        .svc-includes-item i { color: var(--primary); font-size: 0.75rem; flex-shrink:0; }
+        .svc-duration {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 5px 14px;
+            margin-bottom: 20px;
+        }
+
+        @media(max-width:1024px){ .svc-detail { grid-template-columns: 1fr; } .svc-detail.reverse { direction: ltr; } .svc-detail-img { height: 280px; } .svc-detail-body { padding: 32px 24px; } }
+
+        /* Mini service grid */
+        .mini-service {
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px 24px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .mini-service:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: var(--primary-glow); }
+        .mini-svc-icon {
+            width: 56px; height: 56px;
+            border-radius: var(--radius-md);
+            background: var(--primary-subtle);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin: 0 auto 16px;
+        }
+        .mini-svc-name { font-size: 1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
+        .mini-svc-price { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+        .mini-svc-time { font-size: 0.78rem; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+<div id="navbar-placeholder"></div>
+
+<!-- Banner -->
+<div class="page-banner">
+    <img src="assets/service_haircut.png" alt="BarberCo services" loading="lazy">
+    <div class="page-banner-content">
+        <h1 class="aos">Our Services</h1>
+        <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Services</span></div>
+    </div>
+</div>
+
+<!-- Process Band -->
+<div class="process-band">
+    <div class="container">
+        <div class="process-steps-row">
+            <div class="proc-step aos delay-1">
+                <div class="proc-num">1</div>
+                <div class="proc-title">Choose a Service</div>
+                <div class="proc-desc">Browse our full menu and pick the service that suits your style needs.</div>
+            </div>
+            <div class="proc-arrow hide-mobile"><i class="fas fa-chevron-right"></i></div>
+            <div class="proc-step aos delay-2">
+                <div class="proc-num">2</div>
+                <div class="proc-title">Book or Walk In</div>
+                <div class="proc-desc">Reserve online or show up — we welcome both with open arms.</div>
+            </div>
+            <div class="proc-arrow hide-mobile"><i class="fas fa-chevron-right"></i></div>
+            <div class="proc-step aos delay-3">
+                <div class="proc-num">3</div>
+                <div class="proc-title">Consultation</div>
+                <div class="proc-desc">Your barber takes time to understand your goals before starting.</div>
+            </div>
+            <div class="proc-arrow hide-mobile"><i class="fas fa-chevron-right"></i></div>
+            <div class="proc-step aos delay-4">
+                <div class="proc-num">4</div>
+                <div class="proc-title">Leave Looking Sharp</div>
+                <div class="proc-desc">Walk out with a cut, style and confidence that turns heads.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== MAIN SERVICES ===== -->
+<section class="section">
+    <div class="container">
+        <div class="text-center" style="margin-bottom:56px;">
+            <div class="section-label aos">What We Offer</div>
+            <h2 class="section-title aos delay-1">Every Service, Perfected</h2>
+            <div class="gold-divider"></div>
+            <p class="section-desc aos delay-2">From a quick trim to the full grooming ritual — we have you covered from top to bottom.</p>
+        </div>
+
+        <!-- Haircut & Fade -->
+        <div class="svc-detail aos">
+            <img src="assets/service_haircut.png" alt="Haircut and fade service" class="svc-detail-img" loading="lazy">
+            <div class="svc-detail-body">
+                <div class="service-icon"><i class="fas fa-cut"></i></div>
+                <h2 class="section-title" style="font-size:1.8rem;">Haircut & Fade</h2>
+                <div class="gold-divider"></div>
+                <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px;">Our signature haircut service delivers precision fades, taper cuts, and classic styles tailored to your face shape and lifestyle. Every cut begins with a consultation and ends with a perfectly blended finish.</p>
+                <span class="svc-duration"><i class="fas fa-clock"></i> 30 – 45 min</span>
+                <div class="svc-includes">
+                    <div class="svc-includes-item"><i class="fas fa-check-circle"></i> Personalized style consultation</div>
+                    <div class="svc-includes-item"><i class="fas fa-check-circle"></i> Precision clipper fade (skin, low, mid, high)</div>
+                    <div class="svc-includes-item"><i class="fas fa-check-circle"></i> Scissor work on top</div>
+                    <div class="svc-includes-item"><i class="fas fa-check-circle"></i> Neck shave with straight razor</div>
+                    <div class="svc-includes-item"><i class="fas fa-check-circle"></i> Style finish with premium product</div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+                    <div class="service-price">From $25 <small>/ session</small></div>
+                    <a href="contact.html#booking" class="btn btn-primary" id="book-haircut-btn">Book This Service</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Beard Grooming -->
+        <div class="svc-detail reverse aos">
+            <img src="assets/service_beard.png" alt="Beard grooming service" class="svc-detail-img" loading="lazy">
+            <div class="svc-detail-body">
+                <div class="service-icon"><i class="fas fa-user-tie"></i></div>
+                <h2 class="section-title" style="font-size:1.8rem;">Beard Grooming</h2>
+                <div class="gold-divider"></div>
+                <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px;">A well-groomed beard is a statement. Our barbers sculpt, trim and define your beard with expert precision, followed by conditioning oils that keep it looking and feeling incredible.</p>
+                <span class="svc-duration"><i class="fas fa-clock"></i> 20 – 35 min</span>
+                <div class="svc-includes">
+                    <div class="svc-includes-item"><i class="fas fa-check-circle"></i> Beard shape & outline design</div>
+                    <div class="svc-includes-item"><i class="fas fa-check-circle"></i> Precision trim with scissors & guards</div>
+                    <div class="svc-includes-item"><i class="fas fa-check-circle"></i> Cheek & neckline razor definition</div>
+                    <div class="svc-includes-item"><i class="fas fa-check-circle"></i> Conditioning beard oil treatment</div>
+                    <div class="svc-includes-item"><i class="fas fa-check-circle"></i> Style & comb-out finish</div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+                    <div class="service-price">From $18 <small>/ session</small></div>
+                    <a href="contact.html#booking" class="btn btn-primary" id="book-beard-btn">Book This Service</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hot Towel Shave -->
+        <div class="svc-detail aos">
+            <img src="assets/service_shave.png" alt="Hot towel straight razor shave" class="svc-detail-img" loading="lazy">
+            <div class="svc-detail-body">
+                <div class="service-icon"><i class="fas fa-spa"></i></div>
+                <h2 class="section-title" style="font-size:1.8rem;">Hot Towel Shave</h2>
+                <div class="gold-divider"></div>
+                <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px;">The ultimate grooming indulgence. Our classic hot towel straight razor shave is a 45-minute ritual of relaxation and precision — the smoothest shave you'll ever experience.</p>
+                <span class="svc-duration"><i class="fas fa-clock"></i> 40 – 50 min</span>
+                <div class="svc-includes">
+                    <div class="svc-includes-item"><i class="fas fa-check-circle"></i> Pre-shave hot towel steam treatment</div>
+                    <div class="svc-includes-item"><i class="fas fa-check-circle"></i> Premium shaving cream application</div>
+                    <div class="svc-includes-item"><i class="fas fa-check-circle"></i> Straight razor shave (2 passes)</div>
+                    <div class="svc-includes-item"><i class="fas fa-check-circle"></i> Cold towel close & aftershave balm</div>
+                    <div class="svc-includes-item"><i class="fas fa-check-circle"></i> Facial moisturiser finish</div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+                    <div class="service-price">From $35 <small>/ session</small></div>
+                    <a href="contact.html#booking" class="btn btn-primary" id="book-shave-btn">Book This Service</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hair Coloring -->
+        <div class="svc-detail reverse aos">
+            <img src="assets/service_coloring.png" alt="Hair coloring service" class="svc-detail-img" loading="lazy">
+            <div class="svc-detail-body">
+                <div class="service-icon"><i class="fas fa-palette"></i></div>
+                <h2 class="section-title" style="font-size:1.8rem;">Hair Coloring</h2>
+                <div class="gold-divider"></div>
+                <p style="font-size:0.9rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px;">From salt-and-pepper blending to full color changes and highlights — our color specialists deliver natural-looking, long-lasting results tailored to complement your complexion and style.</p>
+                <span class="svc-duration"><i class="fas fa-clock"></i> 60 – 90 min</span>
+                <div class="svc-includes">
+                    <div class="svc-includes-item"><i class="fas fa-check-circle"></i> Color consultation & shade selection</div>
+                    <div class="svc-includes-item"><i class="fas fa-check-circle"></i> Patch test & preparation</div>
+                    <div class="svc-includes-item"><i class="fas fa-check-circle"></i> Professional color application</div>
+                    <div class="svc-includes-item"><i class="fas fa-check-circle"></i> Conditioning treatment post-color</div>
+                    <div class="svc-includes-item"><i class="fas fa-check-circle"></i> Blow-dry & style finish</div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+                    <div class="service-price">From $55 <small>/ session</small></div>
+                    <a href="contact.html#booking" class="btn btn-primary" id="book-color-btn">Book This Service</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ADDITIONAL SERVICES ===== -->
+<section class="section bg-alt">
+    <div class="container">
+        <div class="text-center" style="margin-bottom:48px;">
+            <div class="section-label aos">More Services</div>
+            <h2 class="section-title aos delay-1">Additional Grooming Services</h2>
+            <div class="gold-divider"></div>
+        </div>
+        <div class="grid-4">
+            <div class="mini-service aos delay-1">
+                <div class="mini-svc-icon"><i class="fas fa-child"></i></div>
+                <div class="mini-svc-name">Kids Haircut</div>
+                <div class="mini-svc-price">$18</div>
+                <div class="mini-svc-time"><i class="fas fa-clock"></i> 20 – 30 min</div>
+                <p style="font-size:0.8rem;color:var(--text-muted);margin-top:10px;line-height:1.6;">Fun and patient cuts for little ones aged 3–12. We make it a great experience for kids.</p>
+            </div>
+            <div class="mini-service aos delay-2">
+                <div class="mini-svc-icon"><i class="fas fa-wind"></i></div>
+                <div class="mini-svc-name">Scalp Treatment</div>
+                <div class="mini-svc-price">$30</div>
+                <div class="mini-svc-time"><i class="fas fa-clock"></i> 25 – 35 min</div>
+                <p style="font-size:0.8rem;color:var(--text-muted);margin-top:10px;line-height:1.6;">Deep-cleansing scalp massage with nourishing treatment oils. Promotes healthy hair growth.</p>
+            </div>
+            <div class="mini-service aos delay-3">
+                <div class="mini-svc-icon"><i class="fas fa-star"></i></div>
+                <div class="mini-svc-name">Full VIP Package</div>
+                <div class="mini-svc-price">$95</div>
+                <div class="mini-svc-time"><i class="fas fa-clock"></i> 90 – 120 min</div>
+                <p style="font-size:0.8rem;color:var(--text-muted);margin-top:10px;line-height:1.6;">The complete treatment: haircut + beard + shave + scalp + styling. The ultimate experience.</p>
+            </div>
+            <div class="mini-service aos delay-4">
+                <div class="mini-svc-icon"><i class="fas fa-spray-can"></i></div>
+                <div class="mini-svc-name">Style & Blow-Dry</div>
+                <div class="mini-svc-price">$20</div>
+                <div class="mini-svc-time"><i class="fas fa-clock"></i> 15 – 20 min</div>
+                <p style="font-size:0.8rem;color:var(--text-muted);margin-top:10px;line-height:1.6;">Expert styling and blow-dry with premium products. Great as an add-on to any cut.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PRODUCTS ===== -->
+<section class="section">
+    <div class="container">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
+            <div class="aos">
+                <img src="assets/service_beard.png" alt="Premium grooming products" style="width:100%;border-radius:20px;object-fit:cover;aspect-ratio:4/3;" loading="lazy">
+            </div>
+            <div class="aos delay-2">
+                <div class="section-label">Premium Products</div>
+                <h2 class="section-title">We Only Use the Best</h2>
+                <div class="gold-divider"></div>
+                <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.85;margin-bottom:28px;">Every product we use in the shop is handpicked for performance, safety and quality. Our shelves feature industry leaders trusted by professionals worldwide.</p>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;">
+                    <div style="padding:16px;background:var(--surface-alt);border-radius:12px;border:1px solid var(--border);text-align:center;font-weight:600;font-size:0.85rem;color:var(--text-dark);">Baxter of California</div>
+                    <div style="padding:16px;background:var(--surface-alt);border-radius:12px;border:1px solid var(--border);text-align:center;font-weight:600;font-size:0.85rem;color:var(--text-dark);">American Crew</div>
+                    <div style="padding:16px;background:var(--surface-alt);border-radius:12px;border:1px solid var(--border);text-align:center;font-weight:600;font-size:0.85rem;color:var(--text-dark);">Billy Jealousy</div>
+                    <div style="padding:16px;background:var(--surface-alt);border-radius:12px;border:1px solid var(--border);text-align:center;font-weight:600;font-size:0.85rem;color:var(--text-dark);">Layrite</div>
+                </div>
+                <a href="contact.html#booking" class="btn btn-primary" id="svc-book-cta"><i class="fas fa-calendar-check"></i> Book Your Service</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="components.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
