@@ -9,7 +9,11 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body { background: #111111; }
+        body { 
+            background: var(--bg);
+            color: var(--text-body);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
         .cs-bg {
             position: fixed;
             inset: 0;
@@ -19,25 +23,34 @@
         .cs-bg img {
             width: 100%; height: 100%;
             object-fit: cover;
-            opacity: 0.08;
+            opacity: 0.06;
             filter: grayscale(100%);
+            transition: opacity 0.3s ease;
+        }
+        .dark .cs-bg img {
+            opacity: 0.12;
         }
         .cs-bg-overlay {
             position: absolute;
             inset: 0;
+            background: linear-gradient(135deg, rgba(248,246,242,0.96) 0%, rgba(240,237,230,0.92) 50%, rgba(248,246,242,0.98) 100%);
+            transition: background 0.3s ease;
+        }
+        .dark .cs-bg-overlay {
             background: linear-gradient(135deg, rgba(17,17,17,0.98) 0%, rgba(17,17,17,0.85) 50%, rgba(28,20,5,0.95) 100%);
         }
+
         /* Decorative rings */
         .cs-ring {
             position: absolute;
             border-radius: 50%;
-            border: 1px solid rgba(184,134,11,0.08);
+            border: 1px solid rgba(184,134,11,0.12);
             animation: expand 12s ease-in-out infinite;
         }
         .cs-ring-1 { width:500px; height:500px; top:50%; left:50%; transform:translate(-50%,-50%); animation-delay:0s; }
         .cs-ring-2 { width:750px; height:750px; top:50%; left:50%; transform:translate(-50%,-50%); animation-delay:2s; }
         .cs-ring-3 { width:1050px; height:1050px; top:50%; left:50%; transform:translate(-50%,-50%); animation-delay:4s; }
-        @keyframes expand { 0%,100%{opacity:0.08;} 50%{opacity:0.2;} }
+        @keyframes expand { 0%,100%{opacity:0.08;} 50%{opacity:0.25;} }
 
         .cs-inner {
             min-height: 100vh;
@@ -46,7 +59,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 40px 24px;
+            padding: 80px 24px 48px;
             position: relative;
             z-index: 2;
         }
@@ -54,34 +67,41 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 48px;
+            margin-bottom: 64px;
             text-decoration: none;
-            transition: opacity 0.2s;
+            transition: opacity 0.2s, transform 0.3s ease;
         }
-        .cs-logo:hover { opacity: 0.8; }
+        .cs-logo:hover { opacity: 0.85; transform: translateY(-2px); }
         .cs-logo-text {
             font-family: 'Playfair Display', serif;
             font-size: 1.4rem;
             font-weight: 800;
-            color: #FFFFFF;
+            color: var(--text-dark);
+            transition: color 0.3s ease;
         }
-        .cs-logo-text span { color: #D4A017; }
+        .cs-logo-text span { color: var(--primary-light); }
+
+        @media (max-width: 600px) {
+            .cs-inner { padding: 96px 20px 48px; }
+            .cs-logo { margin-bottom: 56px; }
+        }
 
         .cs-tagline {
             font-size: 0.72rem;
             font-weight: 700;
             letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: #D4A017;
+            color: var(--primary-light);
             margin-bottom: 20px;
         }
         .cs-title {
             font-family: 'Playfair Display', serif;
             font-size: clamp(2.4rem, 6vw, 4.5rem);
             font-weight: 900;
-            color: #FFFFFF;
+            color: var(--text-dark);
             line-height: 1.1;
             margin-bottom: 20px;
+            transition: color 0.3s ease;
         }
         .cs-title em {
             font-style: italic;
@@ -93,20 +113,14 @@
             animation: goldShimmer 4s linear infinite;
         }
         @keyframes goldShimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
-        .cs-desc { color: rgba(255,255,255,0.5); font-size: 1rem; line-height: 1.8; max-width: 520px; margin: 0 auto 40px; }
-
-        /* Barber pole divider */
-        .cs-divider {
-            width: 120px; height: 4px;
-            border-radius: 4px;
-            background: repeating-linear-gradient(
-                90deg,
-                #B8860B 0px, #B8860B 14px,
-                #FFFFFF 14px, #FFFFFF 28px,
-                #C0392B 28px, #C0392B 42px
-            );
+        
+        .cs-desc { 
+            color: var(--text-muted); 
+            font-size: 1.05rem; 
+            line-height: 1.8; 
+            max-width: 520px; 
             margin: 0 auto 40px;
-            animation: barberScroll 2s linear infinite;
+            transition: color 0.3s ease;
         }
 
         /* Notify form */
@@ -122,16 +136,16 @@
             flex: 1;
             min-width: 200px;
             padding: 14px 18px;
-            border: 1.5px solid rgba(184,134,11,0.3);
+            border: 1.5px solid var(--border);
             border-radius: 8px;
-            background: rgba(255,255,255,0.06);
-            color: #FFFFFF;
+            background: var(--surface);
+            color: var(--text-dark);
             font-size: 0.9rem;
             outline: none;
-            transition: border-color 0.2s;
+            transition: all 0.25s ease;
         }
-        .cs-notify-form input::placeholder { color: rgba(255,255,255,0.35); }
-        .cs-notify-form input:focus { border-color: #D4A017; }
+        .cs-notify-form input::placeholder { color: var(--text-light); }
+        .cs-notify-form input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-glow); }
 
         /* Countdown */
         .cs-countdown {
@@ -142,22 +156,27 @@
             flex-wrap: wrap;
         }
         .cs-unit {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: var(--surface);
+            border: 1px solid var(--border);
             border-radius: 14px;
-            width: 84px; height: 84px;
+            width: 86px; height: 86px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: border-color 0.3s;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
         }
-        .cs-unit:hover { border-color: rgba(184,134,11,0.4); }
+        .cs-unit:hover { 
+            border-color: var(--primary); 
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
         .cs-unit-num {
             font-family: 'Playfair Display', serif;
             font-size: 2.2rem;
             font-weight: 900;
-            color: #D4A017;
+            color: var(--primary-light);
             line-height: 1;
         }
         .cs-unit-label {
@@ -165,45 +184,71 @@
             font-weight: 700;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.35);
+            color: var(--text-muted);
             margin-top: 4px;
         }
 
         /* Social links */
+        .cs-social-label {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
         .cs-social {
             display: flex;
             gap: 12px;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 12px;
         }
         .cs-social a {
             width: 40px; height: 40px;
             border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.12);
-            color: rgba(255,255,255,0.45);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            background: var(--surface);
             display: inline-flex;
             align-items: center;
             justify-content: center;
             font-size: 0.9rem;
-            transition: all 0.25s;
+            transition: all 0.25s ease;
             text-decoration: none;
+            box-shadow: var(--shadow-sm);
         }
-        .cs-social a:hover { border-color: #D4A017; color: #D4A017; }
+        .cs-social a:hover { 
+            border-color: var(--primary); 
+            color: var(--primary); 
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
 
         .cs-home-link {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.35);
+            font-size: 0.85rem;
+            color: var(--text-muted);
             margin-top: 40px;
             display: flex;
             align-items: center;
             gap: 6px;
         }
-        .cs-home-link a { color: #D4A017; text-decoration: none; font-weight: 600; }
+        .cs-home-link a { color: var(--primary); text-decoration: none; font-weight: 600; }
         .cs-home-link a:hover { text-decoration: underline; }
 
-        /* Icon btn override for dark page */
-        .auth-top-icons .icon-btn { background:rgba(255,255,255,0.07); border-color:rgba(255,255,255,0.12); color:rgba(255,255,255,0.6); }
-        .auth-top-icons .icon-btn:hover { border-color:#D4A017; color:#D4A017; }
+        /* Icon btn styling for controls */
+        .auth-top-icons .icon-btn { 
+            background: var(--surface); 
+            border: 1px solid var(--border); 
+            color: var(--text-dark);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.25s ease;
+        }
+        .auth-top-icons .icon-btn:hover { 
+            border-color: var(--primary); 
+            color: var(--primary); 
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
     </style>
 </head>
 <body>
@@ -231,12 +276,13 @@
     <!-- Logo → Home -->
     <a href="index.html" class="cs-logo" id="cs-logo" aria-label="BarberCo Home">
         <svg width="40" height="40" viewBox="0 0 100 100" fill="none">
-            <rect width="100" height="100" rx="14" fill="#B8860B" opacity="0.18"/>
-            <circle cx="30" cy="32" r="8" fill="none" stroke="#B8860B" stroke-width="3.5"/>
-            <circle cx="30" cy="68" r="8" fill="none" stroke="#B8860B" stroke-width="3.5"/>
-            <line x1="36" y1="37" x2="72" y2="72" stroke="#B8860B" stroke-width="4" stroke-linecap="round"/>
-            <line x1="36" y1="63" x2="72" y2="28" stroke="#B8860B" stroke-width="4" stroke-linecap="round"/>
-            <circle cx="54" cy="50" r="3.5" fill="#B8860B"/>
+            <rect width="100" height="100" rx="14" fill="var(--primary)" opacity="0.18"/>
+            <rect width="100" height="100" rx="14" fill="none" stroke="var(--primary)" stroke-width="2" opacity="0.5"/>
+            <circle cx="30" cy="32" r="8" fill="none" stroke="var(--primary)" stroke-width="3.5"/>
+            <circle cx="30" cy="68" r="8" fill="none" stroke="var(--primary)" stroke-width="3.5"/>
+            <line x1="36" y1="37" x2="72" y2="72" stroke="var(--primary)" stroke-width="4" stroke-linecap="round"/>
+            <line x1="36" y1="63" x2="72" y2="28" stroke="var(--primary)" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="54" cy="50" r="3.5" fill="var(--primary)"/>
         </svg>
         <div class="cs-logo-text">Barber<span>Co</span></div>
     </a>
@@ -247,8 +293,6 @@
 
     <h1 class="cs-title">A New Experience<br>Is Being <em>Crafted</em></h1>
     <p class="cs-desc">We're sharpening our blades and putting the finishing touches on something special. Sign up below to be the first through the door.</p>
-
-    <div class="cs-divider"></div>
 
     <!-- Countdown -->
     <div class="cs-countdown" id="countdown" data-target="2026-12-01T00:00:00">
@@ -267,7 +311,7 @@
     </form>
 
     <!-- Social -->
-    <p style="font-size:0.78rem;color:rgba(255,255,255,0.35);margin-bottom:12px;letter-spacing:0.1em;text-transform:uppercase;">Follow Our Journey</p>
+    <p class="cs-social-label">Follow Our Journey</p>
     <div class="cs-social">
         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>

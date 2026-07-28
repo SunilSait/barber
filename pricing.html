@@ -44,13 +44,15 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 16px;
             padding: 16px 28px;
             border-bottom: 1px solid var(--border);
             transition: var(--transition-fast);
         }
+        .price-row > div:first-child { flex: 1; min-width: 0; }
         .price-row:last-child { border-bottom: none; }
         .price-row:hover { background: var(--bg-alt); }
-        .price-row-name { font-size: 0.9rem; font-weight: 500; color: var(--text-dark); }
+        .price-row-name { font-size: 0.9rem; font-weight: 500; color: var(--text-dark); word-break: break-word; }
         .price-row-duration { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
         .price-row-amount {
             font-family: 'Playfair Display', serif;
@@ -58,6 +60,11 @@
             font-weight: 700;
             color: var(--primary);
             flex-shrink: 0;
+            margin-left: 12px;
+        }
+        @media (max-width: 480px) {
+            .price-row { padding: 14px 16px; gap: 12px; }
+            .price-row-name { font-size: 0.85rem; }
         }
 
         /* FAQ */
@@ -100,10 +107,11 @@
 
 <!-- Banner -->
 <div class="page-banner">
-    <img src="assets/service_package.png" alt="BarberCo pricing" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=1400&q=80" alt="BarberCo pricing and packages" loading="lazy">
     <div class="page-banner-content">
-        <h1 class="aos">Pricing</h1>
+        <h1 class="aos">Pricing & Packages</h1>
         <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Pricing</span></div>
+        <p class="page-banner-subtext aos delay-1">Transparent rates and exclusive membership packages tailored for the modern gentleman.</p>
     </div>
 </div>
 

@@ -35,6 +35,10 @@
             position:relative;
             z-index:2;
             padding:100px 0 80px;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            text-align:center;
         }
         .hero-badge {
             display:inline-flex;
@@ -57,17 +61,23 @@
             color:#FFFFFF;
             line-height:1.08;
             margin-bottom:22px;
-            max-width:680px;
+            max-width:780px;
+            margin-left:auto;
+            margin-right:auto;
+            text-align:center;
         }
         .hero-title span { color: #D4A017; }
         .hero-desc {
             font-size:1.1rem;
             color:rgba(255,255,255,0.68);
-            max-width:520px;
+            max-width:580px;
             line-height:1.8;
             margin-bottom:40px;
+            margin-left:auto;
+            margin-right:auto;
+            text-align:center;
         }
-        .hero-actions { display:flex; gap:14px; flex-wrap:wrap; }
+        .hero-actions { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; }
         .hero-stats {
             display:flex;
             gap:40px;
@@ -75,6 +85,8 @@
             padding-top:40px;
             border-top:1px solid rgba(255,255,255,0.1);
             flex-wrap:wrap;
+            justify-content:center;
+            width:100%;
         }
         .hero-stat-num {
             font-family:'Playfair Display',serif;
@@ -91,24 +103,6 @@
             color:rgba(255,255,255,0.5);
             margin-top:4px;
         }
-        /* Scroll indicator */
-        .scroll-indicator {
-            position:absolute;
-            bottom:36px;
-            left:50%;
-            transform:translateX(-50%);
-            display:flex;
-            flex-direction:column;
-            align-items:center;
-            gap:6px;
-            color:rgba(255,255,255,0.4);
-            font-size:0.7rem;
-            letter-spacing:0.12em;
-            text-transform:uppercase;
-            animation:bounce 2s infinite;
-            z-index:2;
-        }
-        @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
         /* Services strip */
         .services-strip {
             background: var(--primary);
@@ -251,10 +245,6 @@
             </div>
         </div>
     </div>
-    <div class="scroll-indicator">
-        <span>Scroll</span>
-        <i class="fas fa-chevron-down"></i>
-    </div>
 </section>
 
 <!-- Services Strip -->
@@ -299,7 +289,7 @@
                 <div class="service-body">
                     <div class="service-icon"><i class="fas fa-user-tie"></i></div>
                     <h3 class="service-title">Beard Grooming</h3>
-                    <p class="service-desc">Shape, trim and define your beard with precision — including conditioner and beard oil treatment.</p>
+                    <p class="service-desc">Shape, trim and define your beard with precision — including beard oil treatment.</p>
                     <div class="service-price">From $18 <small>/ session</small></div>
                 </div>
             </div>
@@ -337,7 +327,7 @@
             <div class="why-card aos delay-2">
                 <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
                 <h4 class="why-title">Premium Products</h4>
-                <p class="why-desc">We use only top-shelf grooming products — Baxter of California, American Crew & more.</p>
+                <p class="why-desc">We use only top-shelf grooming products — Baxter of California, American Crew.</p>
             </div>
             <div class="why-card aos delay-3">
                 <div class="why-icon"><i class="fas fa-clock"></i></div>
@@ -386,9 +376,8 @@
                     <div class="barber-specialties">
                         <span class="barber-tag">Beards</span>
                         <span class="barber-tag">Classic Cuts</span>
-                        <span class="barber-tag">Hot Shave</span>
                     </div>
-                    <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.6;">Renowned for immaculate beard sculpting and the smoothest hot towel shaves in town.</p>
+                    <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.6;">Renowned for immaculate beard sculpting and hot towel shaves in town.</p>
                 </div>
             </div>
             <div class="barber-card aos delay-3">
@@ -419,11 +408,11 @@
         <div style="height:48px;"></div>
         <div class="gallery-grid">
             <div class="gallery-item aos delay-1">
-                <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80" alt="Precision fade haircut" loading="lazy">
+                <img src="assets/gallery_skin_fade.png" alt="Precision fade haircut" loading="lazy">
                 <div class="gallery-overlay"><span>Skin Fade</span></div>
             </div>
             <div class="gallery-item aos delay-2">
-                <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&q=80" alt="Classic barber cut" loading="lazy">
+                <img src="assets/barbershop_cut_five.png" alt="Classic barber cut" loading="lazy">
                 <div class="gallery-overlay"><span>Classic Cut</span></div>
             </div>
             <div class="gallery-item aos delay-3">
@@ -431,15 +420,15 @@
                 <div class="gallery-overlay"><span>Modern Fade</span></div>
             </div>
             <div class="gallery-item aos delay-1">
-                <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&q=80" alt="Beard grooming" loading="lazy">
+                <img src="assets/gallery_beard_sculpt.png" alt="Beard grooming" loading="lazy">
                 <div class="gallery-overlay"><span>Beard Sculpt</span></div>
             </div>
             <div class="gallery-item aos delay-2">
-                <img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=600&q=80" alt="Textured style" loading="lazy">
+                <img src="assets/service_coloring.png" alt="Textured style" loading="lazy">
                 <div class="gallery-overlay"><span>Textured Style</span></div>
             </div>
             <div class="gallery-item aos delay-3">
-                <img src="https://images.unsplash.com/photo-1517832606299-7ae9b720a176?w=600&q=80" alt="Hot towel shave" loading="lazy">
+                <img src="assets/gallery_hot_shave.png" alt="Hot towel shave" loading="lazy">
                 <div class="gallery-overlay"><span>Hot Towel Shave</span></div>
             </div>
         </div>
@@ -462,9 +451,9 @@
             <div class="testimonial-card aos delay-1">
                 <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                 <div class="testimonial-quote">&ldquo;</div>
-                <p class="testimonial-text">Best fade I've ever had. Marcus took his time to understand exactly what I wanted and delivered something even better. This is my go-to spot from now on.</p>
+                <p class="testimonial-text">Best fade I've ever had. Marcus took his time to understand exactly what I wanted and delivered something even better. This is my go-to spot from now.</p>
                 <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Alex M." class="testimonial-avatar" loading="lazy">
+                    <img src="assets/avatar_alex.png" alt="Alex Morrison" class="testimonial-avatar" loading="lazy">
                     <div>
                         <div class="testimonial-name">Alex Morrison</div>
                         <div class="testimonial-role">Regular Client</div>
@@ -476,7 +465,7 @@
                 <div class="testimonial-quote">&ldquo;</div>
                 <p class="testimonial-text">Daniel shaped my beard perfectly — I've been struggling to find someone who gets it right for years. The hot towel shave is an experience you have to try.</p>
                 <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" alt="Ryan K." class="testimonial-avatar" loading="lazy">
+                    <img src="assets/avatar_ryan.png" alt="Ryan Kowalski" class="testimonial-avatar" loading="lazy">
                     <div>
                         <div class="testimonial-name">Ryan Kowalski</div>
                         <div class="testimonial-role">Loyal Client</div>
@@ -486,9 +475,9 @@
             <div class="testimonial-card aos delay-3">
                 <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                 <div class="testimonial-quote">&ldquo;</div>
-                <p class="testimonial-text">Brought my son here for his first barbershop cut. James was incredibly patient and made him feel so comfortable. Amazing atmosphere and skill!</p>
+                <p class="testimonial-text">Brought my son here for his first barbershop cut. James was incredibly patient and made him feel so comfortable. good atmosphere and skill!</p>
                 <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&q=80" alt="David T." class="testimonial-avatar" loading="lazy">
+                    <img src="assets/avatar_david.png" alt="David Torres" class="testimonial-avatar" loading="lazy">
                     <div>
                         <div class="testimonial-name">David Torres</div>
                         <div class="testimonial-role">Happy Parent</div>
@@ -576,7 +565,7 @@
         <div class="stats-grid-4">
             <div class="stat-block aos delay-1" style="border-right:1px solid rgba(255,255,255,0.08);">
                 <div class="stat-number" data-counter data-target="12" data-suffix="+">0+</div>
-                <div class="stat-label" style="color:rgba(255,255,255,0.5);">Years in Business</div>
+                <div class="stat-label" style="color:rgba(255,255,255,0.5);">Years </div>
             </div>
             <div class="stat-block aos delay-2" style="border-right:1px solid rgba(255,255,255,0.08);">
                 <div class="stat-number" data-counter data-target="8500" data-suffix="+">0+</div>
@@ -584,7 +573,7 @@
             </div>
             <div class="stat-block aos delay-3" style="border-right:1px solid rgba(255,255,255,0.08);">
                 <div class="stat-number" data-counter data-target="15" data-suffix="+">0+</div>
-                <div class="stat-label" style="color:rgba(255,255,255,0.5);">Services Offered</div>
+                <div class="stat-label" style="color:rgba(255,255,255,0.5);">Services</div>
             </div>
             <div class="stat-block aos delay-4">
                 <div class="stat-number" data-counter data-target="5" data-suffix="★">0★</div>

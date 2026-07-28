@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body { background: #111111; }
+        body { background: #0B0B0B; }
         .err-bg-decor {
             position: fixed;
             inset: 0;
@@ -18,26 +18,36 @@
         }
         .err-bg-decor .c1 {
             position: absolute;
-            top: -200px; right: -200px;
-            width: 600px; height: 600px;
+            top: -250px; right: -250px;
+            width: 700px; height: 700px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(184,134,11,0.10) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(212,160,23,0.14) 0%, rgba(184,134,11,0.03) 50%, transparent 70%);
+            animation: pulseGlow 8s ease-in-out infinite alternate;
         }
         .err-bg-decor .c2 {
             position: absolute;
-            bottom: -150px; left: -150px;
-            width: 450px; height: 450px;
+            bottom: -200px; left: -200px;
+            width: 550px; height: 550px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(184,134,11,0.07) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(212,160,23,0.10) 0%, transparent 70%);
+            animation: pulseGlow 6s ease-in-out infinite alternate-reverse;
         }
         .err-bg-decor .grid-lines {
             position: absolute;
             inset: 0;
             background-image:
-                linear-gradient(rgba(184,134,11,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(184,134,11,0.04) 1px, transparent 1px);
-            background-size: 56px 56px;
+                linear-gradient(rgba(212,160,23,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212,160,23,0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
         }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); opacity: 0.7; }
+            100% { transform: scale(1.15); opacity: 1; }
+        }
+
         .error-page-inner {
             min-height: 100vh;
             display: flex;
@@ -45,82 +55,251 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 40px 24px;
+            padding: 48px 24px;
             position: relative;
             z-index: 2;
         }
         .err-logo {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 56px;
+            gap: 12px;
+            margin-bottom: 44px;
             text-decoration: none;
-            transition: opacity 0.2s;
+            transition: transform 0.3s ease;
         }
-        .err-logo:hover { opacity: 0.8; }
+        .err-logo:hover { transform: translateY(-2px); }
         .err-logo-text {
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 800;
-            color: #FFFFFF;
+            color: var(--text-dark);
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
         }
-        .err-logo-text span { color: #D4A017; }
-        .err-visual {
+        .err-logo-text span { color: var(--primary-light); }
+        
+        /* Open Floating Hero Visual (No Box Card) */
+        .err-open-hero {
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 40px;
+            padding: 16px 24px;
         }
-        .err-visual::before {
-            content: '';
+        .err-hero-glow {
             position: absolute;
-            inset: -24px;
-            border: 2px dashed rgba(184,134,11,0.25);
-            border-radius: 24px;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 380px; height: 380px;
+            background: radial-gradient(circle, rgba(212,160,23,0.22) 0%, rgba(184,134,11,0.04) 55%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(45px);
+            pointer-events: none;
+            z-index: 0;
+            animation: heroGlowPulse 5s ease-in-out infinite alternate;
         }
-        .err-visual-inner {
-            background: rgba(184,134,11,0.06);
-            border: 1px solid rgba(184,134,11,0.2);
-            border-radius: 20px;
-            padding: 40px 56px;
+        @keyframes heroGlowPulse {
+            0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.5; }
+            100% { transform: translate(-50%, -50%) scale(1.18); opacity: 0.85; }
         }
-        .err-blade {
-            font-size: 0.75rem;
+
+        /* Scissors Crest Vector Icon */
+        .err-scissors-crest {
+            position: relative;
+            z-index: 1;
+            width: 64px;
+            height: 64px;
+            margin-bottom: 18px;
+            background: radial-gradient(circle, rgba(212,160,23,0.25) 0%, rgba(184,134,11,0.08) 100%);
+            border: 1.5px solid rgba(212,160,23,0.45);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #D4A017;
+            font-size: 1.5rem;
+            box-shadow: 0 0 25px rgba(212,160,23,0.3);
+            animation: floatScissors 3.5s ease-in-out infinite;
+        }
+        @keyframes floatScissors {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-6px) rotate(6deg); }
+        }
+
+        .err-blade-badge {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 18px;
+            background: linear-gradient(135deg, rgba(212,160,23,0.18), rgba(184,134,11,0.06));
+            border: 1.5px solid rgba(212,160,23,0.35);
+            border-radius: 50px;
+            font-size: 0.72rem;
             font-weight: 700;
             letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: rgba(184,134,11,0.5);
-            margin-bottom: 8px;
+            color: #B8860B;
+            margin-bottom: 14px;
+            box-shadow: var(--shadow-sm);
+        }
+        .dark .err-blade-badge { color: #D4A017; }
+
+        .error-number {
+            position: relative;
+            z-index: 1;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(6.5rem, 18vw, 11.5rem);
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #FFF6D6 0%, #F0C450 30%, #D4A017 60%, #8B6508 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 14px 45px rgba(212,160,23,0.35);
+            animation: goldShimmer 5s linear infinite;
+            margin-bottom: 18px;
+        }
+        @keyframes goldShimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        /* Barber Pole Stripe Pill */
+        .err-pole-bar {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 24px;
+            background: var(--surface);
+            border: 1.5px solid rgba(212,160,23,0.35);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        .dark .err-pole-bar {
+            background: rgba(22, 22, 22, 0.85);
+            border-color: rgba(212,160,23,0.3);
+        }
+        .err-pole-bar::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; right: -100%; bottom: 0;
+            background: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 10px,
+                rgba(212, 160, 23, 0.12) 10px,
+                rgba(212, 160, 23, 0.12) 20px
+            );
+            animation: moveStripes 10s linear infinite;
+        }
+        @keyframes moveStripes {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(50px); }
         }
         .err-blade-bottom {
-            font-size: 0.65rem;
+            font-size: 0.75rem;
             font-weight: 700;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
-            color: rgba(184,134,11,0.35);
-            margin-top: 8px;
+            color: var(--text-dark);
+            position: relative;
+            z-index: 1;
+            transition: color 0.3s ease;
         }
+        .err-blade-bottom span { color: var(--primary-light); }
+
         .err-title-main {
-            color: #FFFFFF !important;
-            margin-bottom: 12px;
+            font-size: clamp(1.8rem, 4vw, 2.75rem);
+            font-weight: 800;
+            color: var(--text-dark) !important;
+            margin-bottom: 14px;
+            letter-spacing: -0.01em;
+            transition: color 0.3s ease;
         }
         .err-title-main span {
-            background: linear-gradient(135deg, #B8860B, #D4A017, #B8860B);
+            background: linear-gradient(135deg, #F0C450, #D4A017, #B8860B);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .err-desc { color: rgba(255,255,255,0.5); max-width: 460px; margin: 0 auto 36px; font-size: 1rem; line-height: 1.8; }
-        .err-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
-        .err-quick-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
-        .err-quick-links a {
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.35);
-            transition: color 0.2s;
+        .err-desc { 
+            color: var(--text-muted); 
+            max-width: 480px; 
+            margin: 0 auto 38px; 
+            font-size: 1.05rem; 
+            line-height: 1.7; 
+            transition: color 0.3s ease;
         }
-        .err-quick-links a:hover { color: #D4A017; }
-        .err-quick-links span { color: rgba(255,255,255,0.15); }
+
+        .err-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+        .err-actions .btn-primary {
+            background: linear-gradient(135deg, #D4A017 0%, #B8860B 100%);
+            border: none;
+            color: #111111;
+            font-weight: 700;
+            box-shadow: 0 8px 24px rgba(212,160,23,0.3);
+            transition: all 0.3s ease;
+        }
+        .err-actions .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(212,160,23,0.45);
+            background: linear-gradient(135deg, #E5B128 0%, #C9971C 100%);
+        }
+        .err-actions .btn-secondary {
+            border: 1.5px solid var(--primary);
+            color: var(--primary-dark);
+            background: var(--surface);
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .dark .err-actions .btn-secondary {
+            border-color: rgba(212,160,23,0.4);
+            color: #D4A017;
+            background: rgba(212,160,23,0.05);
+        }
+        .err-actions .btn-secondary:hover {
+            background: rgba(212,160,23,0.16);
+            border-color: #D4A017;
+            color: #D4A017;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(212,160,23,0.2);
+        }
+
+        .err-quick-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; align-items: center; }
+        .err-quick-links a {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            transition: all 0.25s ease;
+            position: relative;
+        }
+        .err-quick-links a:hover { 
+            color: var(--primary-light);
+            text-shadow: 0 0 12px rgba(212,160,23,0.4);
+        }
+        .err-quick-links span { color: var(--border-dark); font-size: 0.9rem; }
+
+        @media (max-width: 600px) {
+            .err-open-hero { padding: 8px 12px; margin-bottom: 28px; }
+            .err-scissors-crest { width: 52px; height: 52px; font-size: 1.2rem; }
+            .error-number { font-size: 6rem; }
+        }
     </style>
 </head>
 <body>
@@ -145,23 +324,30 @@
 <div class="error-page-inner">
     <!-- Logo → Home -->
     <a href="index.html" class="err-logo" id="err-logo" aria-label="BarberCo Home">
-        <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
-            <rect width="100" height="100" rx="14" fill="#B8860B" opacity="0.18"/>
-            <circle cx="30" cy="32" r="8" fill="none" stroke="#B8860B" stroke-width="3.5"/>
-            <circle cx="30" cy="68" r="8" fill="none" stroke="#B8860B" stroke-width="3.5"/>
-            <line x1="36" y1="37" x2="72" y2="72" stroke="#B8860B" stroke-width="4" stroke-linecap="round"/>
-            <line x1="36" y1="63" x2="72" y2="28" stroke="#B8860B" stroke-width="4" stroke-linecap="round"/>
-            <circle cx="54" cy="50" r="3.5" fill="#B8860B"/>
+        <svg width="38" height="38" viewBox="0 0 100 100" fill="none">
+            <rect width="100" height="100" rx="16" fill="#B8860B" opacity="0.2"/>
+            <rect width="100" height="100" rx="16" fill="none" stroke="#D4A017" stroke-width="2" opacity="0.6"/>
+            <circle cx="30" cy="32" r="8" fill="none" stroke="#D4A017" stroke-width="4"/>
+            <circle cx="30" cy="68" r="8" fill="none" stroke="#D4A017" stroke-width="4"/>
+            <line x1="36" y1="37" x2="72" y2="72" stroke="#D4A017" stroke-width="4.5" stroke-linecap="round"/>
+            <line x1="36" y1="63" x2="72" y2="28" stroke="#D4A017" stroke-width="4.5" stroke-linecap="round"/>
+            <circle cx="54" cy="50" r="4" fill="#D4A017"/>
         </svg>
         <div class="err-logo-text">Barber<span>Co</span></div>
     </a>
 
-    <!-- Visual -->
-    <div class="err-visual">
-        <div class="err-visual-inner">
-            <div class="err-blade">BarberCo — Est. 2012</div>
-            <div class="error-number">404</div>
-            <div class="err-blade-bottom">This Page Got a Buzz Cut</div>
+    <!-- Open Floating 3D Hero Visual (No Box Card) -->
+    <div class="err-open-hero">
+        <div class="err-hero-glow"></div>
+        <div class="err-scissors-crest">
+            <i class="fas fa-scissors"></i>
+        </div>
+        <div class="err-blade-badge">
+            <i class="fas fa-crown" style="font-size: 0.65rem;"></i> BarberCo — Est. 2012
+        </div>
+        <div class="error-number">404</div>
+        <div class="err-pole-bar">
+            <div class="err-blade-bottom"><i class="fas fa-cut" style="color: var(--primary-light); margin-right: 6px;"></i> This Page Got a <span>Buzz Cut</span></div>
         </div>
     </div>
 
@@ -172,7 +358,7 @@
         <a href="index.html" class="btn btn-primary btn-lg" id="err-home-btn">
             <i class="fas fa-house"></i> Back to Home
         </a>
-        <a href="contact.html" class="btn btn-secondary btn-lg" id="err-contact-btn" style="border-color:rgba(184,134,11,0.4);color:#D4A017;">
+        <a href="contact.html" class="btn btn-secondary btn-lg" id="err-contact-btn">
             <i class="fas fa-phone-alt"></i> Contact Us
         </a>
     </div>
@@ -192,11 +378,10 @@
 
 <script src="script.js"></script>
 <style>
-.dark body, body { background:#111111; }
-.icon-btn { background:rgba(255,255,255,0.07); border-color:rgba(255,255,255,0.12); color:rgba(255,255,255,0.6); }
-.icon-btn:hover { border-color:#D4A017; color:#D4A017; }
-.btn-secondary { border-color:rgba(184,134,11,0.4); color:#D4A017; background:transparent; }
-.btn-secondary:hover { background:rgba(184,134,11,0.12); }
+body { background: var(--bg); color: var(--text-dark); transition: background-color 0.3s ease; }
+.dark body { background: #0B0B0B; }
+.icon-btn { background: var(--surface); border-color: var(--border); color: var(--text-dark); backdrop-filter: blur(8px); }
+.icon-btn:hover { border-color: #D4A017; color: #D4A017; background: rgba(212,160,23,0.15); box-shadow: 0 0 15px rgba(212,160,23,0.3); }
 </style>
 </body>
 </html>

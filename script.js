@@ -269,6 +269,9 @@
 
     // ---- Auth Page Theme/RTL (standalone pages) ----
     function initAuthPageControls() {
+        if (window.barberCoNavbarLoaded) {
+            return;
+        }
         function applySettings() {
             const html = document.documentElement;
             const saved = localStorage.getItem('bc-dark');
