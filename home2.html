@@ -195,7 +195,9 @@
             font-family: 'Playfair Display', serif;
             font-size: 3rem;
             font-weight: 900;
-            color: rgba(184,134,11,0.2);
+            background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #AA771C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             line-height: 1;
             flex-shrink: 0;
             width: 60px;
@@ -256,26 +258,50 @@
 
         /* ===== Marquee ===== */
         .marquee-section {
-            background: var(--primary);
-            padding: 18px 0;
+            background: linear-gradient(90deg, #B8860B 0%, #D4AF37 50%, #B8860B 100%);
+            padding: 16px 0;
             overflow: hidden;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
         .marquee-track {
             display: flex;
+            align-items: center;
             gap: 48px;
+            width: max-content;
             white-space: nowrap;
-            animation: marqueeScroll 18s linear infinite;
+            will-change: transform;
+            animation: marqueeScroll 25s linear infinite;
+        }
+        .marquee-track:hover {
+            animation-play-state: paused;
         }
         .marquee-item {
             display: flex;
             align-items: center;
             gap: 12px;
-            color: rgba(255,255,255,0.9);
+            color: #121212;
             font-size: 0.82rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
+            font-weight: 800;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
             flex-shrink: 0;
+        }
+        .marquee-item i {
+            font-size: 0.85rem;
+            color: #121212;
+            opacity: 0.85;
+        }
+        .marquee-item::after {
+            content: '•';
+            margin-left: 36px;
+            color: rgba(18, 18, 18, 0.4);
+            font-size: 1rem;
+        }
+        @keyframes marqueeScroll {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
         }
         /* ===== VIP CTA Banner ===== */
         .cta-vip-wrapper {
