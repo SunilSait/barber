@@ -16,37 +16,41 @@
             display:flex;
             align-items:center;
             overflow:hidden;
-            background:#111;
+            background:#0D0D0D;
         }
-        .hero-bg {
+        /* Subtle dark bg texture */
+        .hero::before {
+            content:'';
             position:absolute;
             inset:0;
-            width:100%;
-            height:100%;
-            object-fit:cover;
-            opacity:0.45;
+            background: radial-gradient(ellipse 80% 60% at 20% 50%, rgba(184,134,11,0.08) 0%, transparent 60%),
+                        radial-gradient(ellipse 50% 50% at 70% 80%, rgba(184,134,11,0.05) 0%, transparent 60%);
+            z-index:0;
         }
-        .hero-gradient-overlay {
-            position:absolute;
-            inset:0;
-            background: linear-gradient(105deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.6) 55%, rgba(184,134,11,0.12) 100%);
-        }
-        .hero-content {
+        .hero-inner {
             position:relative;
             z-index:2;
+            width:100%;
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+            gap:56px;
+            align-items:center;
             padding:100px 0 80px;
+        }
+        /* LEFT — Content */
+        .hero-left {
             display:flex;
             flex-direction:column;
-            align-items:center;
-            text-align:center;
+            align-items:flex-start;
+            text-align:left;
         }
         .hero-badge {
             display:inline-flex;
             align-items:center;
             gap:8px;
-            background:rgba(184,134,11,0.15);
-            border:1px solid rgba(184,134,11,0.35);
-            color: #D4A017;
+            background:rgba(184,134,11,0.14);
+            border:1px solid rgba(184,134,11,0.38);
+            color:#D4A017;
             font-size:0.72rem;
             font-weight:700;
             letter-spacing:0.18em;
@@ -56,52 +60,119 @@
             margin-bottom:28px;
         }
         .hero-title {
-            font-size:clamp(2.8rem,7vw,5.2rem);
+            font-size:clamp(2.6rem,5vw,4.6rem);
             font-weight:900;
             color:#FFFFFF;
-            line-height:1.08;
+            line-height:1.07;
             margin-bottom:22px;
-            max-width:780px;
-            margin-left:auto;
-            margin-right:auto;
-            text-align:center;
+            text-align:left;
         }
-        .hero-title span { color: #D4A017; }
+        .hero-title span { color:#D4A017; }
         .hero-desc {
-            font-size:1.1rem;
-            color:rgba(255,255,255,0.68);
-            max-width:580px;
-            line-height:1.8;
-            margin-bottom:40px;
-            margin-left:auto;
-            margin-right:auto;
-            text-align:center;
+            font-size:1.05rem;
+            color:rgba(255,255,255,0.65);
+            max-width:480px;
+            line-height:1.82;
+            margin-bottom:36px;
+            text-align:left;
         }
-        .hero-actions { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; }
+        .hero-actions { display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
         .hero-stats {
             display:flex;
-            gap:40px;
-            margin-top:60px;
-            padding-top:40px;
+            gap:32px;
+            margin-top:52px;
+            padding-top:36px;
             border-top:1px solid rgba(255,255,255,0.1);
             flex-wrap:wrap;
-            justify-content:center;
             width:100%;
         }
         .hero-stat-num {
             font-family:'Playfair Display',serif;
-            font-size:2.2rem;
+            font-size:2rem;
             font-weight:800;
             color:#D4A017;
             line-height:1;
         }
         .hero-stat-label {
-            font-size:0.78rem;
+            font-size:0.72rem;
             font-weight:600;
             letter-spacing:0.1em;
             text-transform:uppercase;
-            color:rgba(255,255,255,0.5);
+            color:rgba(255,255,255,0.45);
             margin-top:4px;
+        }
+        /* RIGHT — Image Collage (2x2 Grid) */
+        .hero-right {
+            position:relative;
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:16px;
+            max-width:580px;
+            width:100%;
+            margin-left:auto;
+        }
+        .hero-col-img {
+            border-radius:16px;
+            overflow:hidden;
+            position:relative;
+            height:270px;
+            box-shadow:0 12px 40px rgba(0,0,0,0.55);
+            border:1px solid rgba(255,255,255,0.07);
+        }
+        .hero-col-img img {
+            width:100%; height:100%;
+            object-fit:cover;
+            display:block;
+            transition:transform 0.55s cubic-bezier(0.4,0,0.2,1);
+        }
+        .hero-col-img:hover img { transform:scale(1.06); }
+        .hero-col-img .hci-label {
+            position:absolute;
+            bottom:0; left:0; right:0;
+            padding:14px 16px 12px;
+            background:linear-gradient(to top, rgba(0,0,0,0.78) 0%, transparent 100%);
+            color:#FFFFFF;
+            font-size:0.72rem;
+            font-weight:700;
+            letter-spacing:0.1em;
+            text-transform:uppercase;
+            opacity:0;
+            transform:translateY(8px);
+            transition:all 0.3s ease;
+        }
+        .hero-col-img:hover .hci-label { opacity:1; transform:translateY(0); }
+        /* Gold accent border on first image */
+        .hero-col-img.accent-border {
+            border:2px solid rgba(212,160,23,0.45);
+        }
+        /* Gold pill badge overlay */
+        .hero-col-badge {
+            position:absolute;
+            top:14px; left:14px;
+            background:var(--primary);
+            color:#FFFFFF;
+            font-size:0.65rem;
+            font-weight:800;
+            letter-spacing:0.12em;
+            text-transform:uppercase;
+            padding:5px 12px;
+            border-radius:999px;
+            box-shadow:0 4px 16px rgba(184,134,11,0.45);
+        }
+        /* Responsive */
+        @media(max-width:1024px) {
+            .hero-inner { grid-template-columns:1fr; gap:40px; padding:80px 0 60px; }
+            .hero-left { align-items:center; text-align:center; }
+            .hero-title { text-align:center; }
+            .hero-desc { text-align:center; margin-left:auto; margin-right:auto; }
+            .hero-actions { justify-content:center; }
+            .hero-stats { justify-content:center; }
+            .hero-right { max-width:600px; margin:0 auto; }
+            .hero-col-img { height:260px; }
+        }
+        @media(max-width:480px) {
+            .hero-right { grid-template-columns:1fr; max-width:340px; }
+            .hero-col-img { height:240px; }
         }
         /* Services strip */
         .services-strip {
@@ -203,46 +274,70 @@
 
 <!-- ========== HERO ========== -->
 <section class="hero" id="hero">
-    <img src="assets/hero_home1.png" alt="BarberCo premium barbershop interior" class="hero-bg">
-    <div class="hero-gradient-overlay"></div>
     <div class="container">
-        <div class="hero-content">
-            <div class="hero-badge aos">
-                <i class="fas fa-star" style="color:#D4A017;"></i>
-                Est. 2012 — Downtown's Finest Barbershop
+        <div class="hero-inner">
+
+            <!-- LEFT: Content -->
+            <div class="hero-left">
+                <div class="hero-badge aos">
+                    <i class="fas fa-star" style="color:#D4A017;"></i>
+                    Est. 2012 — Downtown's Finest Barbershop
+                </div>
+                <h1 class="hero-title aos delay-1">
+                    The Art of the<br><span>Perfect Cut</span>
+                </h1>
+                <p class="hero-desc aos delay-2">
+                    Precision haircuts, expert beard grooming &amp; classic hot towel shaves — delivered by master barbers who take your look seriously.
+                </p>
+                <div class="hero-actions aos delay-3">
+                    <a href="contact.html#booking" class="btn btn-primary btn-lg" id="hero-book-btn">
+                        <i class="fas fa-calendar-check"></i> Book Appointment
+                    </a>
+                    <a href="services.html" class="btn btn-secondary btn-lg" id="hero-services-btn" style="border-color:rgba(255,255,255,0.3);color:#FFFFFF;">
+                        <i class="fas fa-scissors"></i> Our Services
+                    </a>
+                </div>
+                <div class="hero-stats aos delay-4">
+                    <div>
+                        <div class="hero-stat-num" data-counter data-target="12" data-suffix="+">0+</div>
+                        <div class="hero-stat-label">Years Experience</div>
+                    </div>
+                    <div>
+                        <div class="hero-stat-num" data-counter data-target="8500" data-suffix="+">0+</div>
+                        <div class="hero-stat-label">Happy Clients</div>
+                    </div>
+                  
+                    <div>
+                        <div class="hero-stat-num" data-counter data-target="4.9" data-suffix="★">0★</div>
+                        <div class="hero-stat-label">Average Rating</div>
+                    </div>
+                </div>
             </div>
-            <h1 class="hero-title aos delay-1">
-                The Art of the<br><span>Perfect Cut</span>
-            </h1>
-            <p class="hero-desc aos delay-2">
-                Precision haircuts, expert beard grooming & classic hot towel shaves — delivered by master barbers who take your look seriously.
-            </p>
-            <div class="hero-actions aos delay-3">
-                <a href="contact.html#booking" class="btn btn-primary btn-lg" id="hero-book-btn">
-                    <i class="fas fa-calendar-check"></i> Book Appointment
-                </a>
-                <a href="services.html" class="btn btn-secondary btn-lg" id="hero-services-btn" style="border-color:rgba(255,255,255,0.3);color:#FFFFFF;">
-                    <i class="fas fa-scissors"></i> Our Services
-                </a>
-            </div>
-            <div class="hero-stats aos delay-4">
-                <div>
-                    <div class="hero-stat-num" data-counter data-target="12" data-suffix="+">0+</div>
-                    <div class="hero-stat-label">Years Experience</div>
+
+            <!-- RIGHT: Services Image Collage (2x2 Grid) -->
+            <div class="hero-right aos delay-2">
+                <!-- Top Left: Haircut & Fade -->
+                <div class="hero-col-img">
+                    <img src="assets/services_haircut_fade.png" alt="Precision haircut and fade" loading="lazy">
+                    <div class="hci-label">Haircut &amp; Fade</div>
                 </div>
-                <div>
-                    <div class="hero-stat-num" data-counter data-target="8500" data-suffix="+">0+</div>
-                    <div class="hero-stat-label">Happy Clients</div>
+                <!-- Top Right: Hot Towel Shave -->
+                <div class="hero-col-img">
+                    <img src="assets/services_hot_shave.png" alt="Hot towel shave" loading="lazy">
+                    <div class="hci-label">Hot Towel Shave</div>
                 </div>
-                <div>
-                    <div class="hero-stat-num" data-counter data-target="3">0</div>
-                    <div class="hero-stat-label">Master Barbers</div>
+                <!-- Bottom Left: Hair Coloring -->
+                <div class="hero-col-img">
+                    <img src="assets/service_coloring.png" alt="Hair coloring for men" loading="lazy">
+                    <div class="hci-label">Hair Coloring</div>
                 </div>
-                <div>
-                    <div class="hero-stat-num" data-counter data-target="4.9" data-suffix="★">0★</div>
-                    <div class="hero-stat-label">Average Rating</div>
+                <!-- Bottom Right: Beard Grooming -->
+                <div class="hero-col-img">
+                    <img src="assets/services_beard_trim.png" alt="Beard grooming service" loading="lazy">
+                    <div class="hci-label">Beard Grooming</div>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
@@ -424,7 +519,7 @@
                 <div class="gallery-overlay"><span>Beard Sculpt</span></div>
             </div>
             <div class="gallery-item aos delay-2">
-                <img src="assets/service_coloring.png" alt="Textured style" loading="lazy">
+                <img src="assets/gallery_textured_taper_cut.png" alt="Textured style" loading="lazy">
                 <div class="gallery-overlay"><span>Textured Style</span></div>
             </div>
             <div class="gallery-item aos delay-3">

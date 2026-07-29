@@ -121,8 +121,9 @@ input,textarea,select,button { font-family:'Inter', sans-serif; outline:none; bo
    NAVBAR
    ============================================================ */
 #main-nav {
-    position: sticky;
-    top: 0;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    width: 100%;
     z-index: 999;
     height: var(--nav-height);
     background: var(--surface);
@@ -823,6 +824,32 @@ input,textarea,select,button { font-family:'Inter', sans-serif; outline:none; bo
     background: var(--surface);
 }
 .form-input::placeholder { color: var(--text-light); }
+
+/* Date Input Calendar Icon */
+input[type="date"] {
+    color-scheme: light;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: brightness(0);
+    opacity: 0.7;
+    transition: var(--transition-fast);
+}
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+/* Dark Theme Date Input */
+.dark input[type="date"] {
+    color-scheme: dark;
+}
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+}
+.dark input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
 .input-wrapper { position:relative; }
 .input-wrapper .form-input { padding-right:46px; }
 .toggle-password {
@@ -1411,7 +1438,7 @@ input,textarea,select,button { font-family:'Inter', sans-serif; outline:none; bo
 }
 
 /* Make nav position relative so mobile dropdown positions correctly */
-#main-nav { position:sticky; position:-webkit-sticky; }
+#main-nav { position: fixed; top: 0; left: 0; right: 0; width: 100%; }
 
 /* Stats 4-col grid — responsive */
 .stats-grid-4 {
@@ -1490,3 +1517,52 @@ input,textarea,select,button { font-family:'Inter', sans-serif; outline:none; bo
 [dir="rtl"] .btn { flex-direction:row-reverse; }
 [dir="rtl"] .form-select { background-position: left 14px center; padding-right:16px; padding-left:36px; }
 [dir="rtl"] input[type="tel"] { text-align: right; }
+
+/* ============================================================
+   SCROLL TO TOP BUTTON
+   ============================================================ */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    background: var(--primary);
+    color: #FFFFFF;
+    border: none;
+    box-shadow: 0 4px 20px rgba(184, 134, 11, 0.45);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    cursor: pointer;
+    z-index: 9990;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(16px);
+    transition: var(--transition);
+}
+.scroll-top-btn:hover {
+    background: var(--primary-dark);
+    box-shadow: 0 6px 26px rgba(184, 134, 11, 0.65);
+    transform: translateY(-3px);
+    color: #FFFFFF;
+}
+.scroll-top-btn.visible {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+}
+.scroll-top-btn.visible:hover {
+    transform: translateY(-3px);
+}
+@media (max-width: 480px) {
+    .scroll-top-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 42px;
+        height: 42px;
+        font-size: 0.95rem;
+    }
+}

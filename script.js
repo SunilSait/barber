@@ -310,6 +310,30 @@
         if (icon) icon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
     }
 
+    // ---- Scroll to Top Button ----
+    function initScrollTop() {
+        let btn = document.getElementById('scroll-top-btn');
+        if (!btn) {
+            btn = document.createElement('button');
+            btn.id = 'scroll-top-btn';
+            btn.className = 'scroll-top-btn';
+            btn.setAttribute('aria-label', 'Scroll to top');
+            btn.setAttribute('title', 'Back to Top');
+            btn.innerHTML = '<i class="fas fa-chevron-up" aria-hidden="true"></i>';
+            document.body.appendChild(btn);
+        }
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        }, { passive: true });
+        btn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
     // ---- Init all on DOMContentLoaded ----
     document.addEventListener('DOMContentLoaded', function () {
         initScrollAnimations();
@@ -325,6 +349,7 @@
         initContactForm();
         initAuthForms();
         initAuthPageControls();
+        initScrollTop();
     });
 
 })();
