@@ -46,8 +46,23 @@
             border-radius: var(--radius-lg, 16px);
             overflow: hidden;
         }
-        @media(max-width:900px){ .gallery-masonry { grid-template-columns: repeat(2, 1fr); } }
-        @media(max-width:550px){ .gallery-masonry { grid-template-columns: 1fr; } }
+        @media(max-width:900px){
+            .gallery-masonry { grid-template-columns: repeat(2, 1fr); }
+            .gallery-masonry .gallery-item:last-child:nth-child(odd) {
+                grid-column: span 2;
+                max-width: 50%;
+                margin: 0 auto;
+                width: 100%;
+            }
+        }
+        @media(max-width:550px){
+            .gallery-masonry { grid-template-columns: 1fr; }
+            .gallery-masonry .gallery-item:last-child:nth-child(odd) {
+                grid-column: span 1;
+                max-width: 100%;
+                margin: 0;
+            }
+        }
 
         /* Insta strip */
         .insta-strip {
@@ -112,43 +127,43 @@
             <button class="filter-btn" data-filter="styling" id="filter-styling">Styled Looks</button>
         </div>
 
-        <!-- 3x3 Gallery Grid (9 Unique Items) -->
+        <!-- 3x3 Gallery Grid (9 Unique Hairstyle Images) -->
         <div class="gallery-masonry" id="gallery-grid">
             <div class="gallery-item aos delay-1" data-cat="fades">
-                <img src="assets/gallery_skin_fade.png" alt="Precision skin fade" loading="lazy">
+                <img src="assets/gallery_fresh_skin_fade.png" alt="Fresh skin fade haircut" loading="lazy">
                 <div class="gallery-overlay"><span>Skin Fade</span></div>
             </div>
             <div class="gallery-item aos delay-2" data-cat="classic">
-                <img src="assets/barbershop_cut_five.png" alt="Classic barbershop cut" loading="lazy">
-                <div class="gallery-overlay"><span>Classic Cut</span></div>
+                <img src="assets/gallery_textured_taper_cut.png" alt="Textured taper cut" loading="lazy">
+                <div class="gallery-overlay"><span>Textured Taper</span></div>
             </div>
             <div class="gallery-item aos delay-3" data-cat="beards">
-                <img src="assets/gallery_beard_sculpt.png" alt="Beard grooming result" loading="lazy">
+                <img src="assets/gallery_luxury_beard_sculpt.png" alt="Beard sculpt result" loading="lazy">
                 <div class="gallery-overlay"><span>Beard Sculpt</span></div>
             </div>
             <div class="gallery-item aos delay-1" data-cat="styling">
-                <img src="assets/gallery_styled_quiff_new.png" alt="Styled quiff" loading="lazy">
+                <img src="assets/gallery_styled_quiff_new.png" alt="Styled quiff haircut" loading="lazy">
                 <div class="gallery-overlay"><span>Styled Quiff</span></div>
             </div>
-            <div class="gallery-item aos delay-2" data-cat="fades">
-                <img src="assets/gallery_1.png" alt="Mid fade haircut" loading="lazy">
-                <div class="gallery-overlay"><span>Mid Fade</span></div>
+            <div class="gallery-item aos delay-2" data-cat="classic">
+                <img src="assets/gallery_classic_side_part.png" alt="Classic side part style" loading="lazy">
+                <div class="gallery-overlay"><span>Classic Side Part</span></div>
             </div>
             <div class="gallery-item aos delay-3" data-cat="classic">
-                <img src="assets/gallery_hot_shave.png" alt="Hot towel shave" loading="lazy">
-                <div class="gallery-overlay"><span>Hot Towel Shave</span></div>
+                <img src="assets/gallery_straight_razor_shave.png" alt="Straight razor shave" loading="lazy">
+                <div class="gallery-overlay"><span>Straight Razor Shave</span></div>
             </div>
             <div class="gallery-item aos delay-1" data-cat="fades">
-                <img src="assets/gallery_fade_taper.png" alt="Sharp fade cut" loading="lazy">
-                <div class="gallery-overlay"><span>Sharp Fade</span></div>
+                <img src="assets/gallery_sharp_taper_fade.png" alt="Sharp drop fade" loading="lazy">
+                <div class="gallery-overlay"><span>Sharp Drop Fade</span></div>
             </div>
-            <div class="gallery-item aos delay-2" data-cat="beards">
-                <img src="assets/gallery_razor_shave.png" alt="Full beard trim" loading="lazy">
-                <div class="gallery-overlay"><span>Full Beard</span></div>
+            <div class="gallery-item aos delay-2" data-cat="classic">
+                <img src="assets/gallery_traditional_cut_new.png" alt="Traditional barbershop cut" loading="lazy">
+                <div class="gallery-overlay"><span>Traditional Cut</span></div>
             </div>
             <div class="gallery-item aos delay-3" data-cat="styling">
-                <img src="assets/gallery_pompadour_new.png" alt="Pompadour style" loading="lazy">
-                <div class="gallery-overlay"><span>Pompadour</span></div>
+                <img src="assets/gallery_pompadour_new.png" alt="Pompadour hairstyle" loading="lazy">
+                <div class="gallery-overlay"><span>Modern Pompadour</span></div>
             </div>
         </div>
     </div>
