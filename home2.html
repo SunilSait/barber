@@ -16,7 +16,8 @@
             display: flex;
             align-items: center;
             overflow: hidden;
-            background: #0B0B0B;
+            background: var(--bg);
+            transition: background 0.3s ease;
         }
         .hero2-bg-img {
             position: absolute;
@@ -24,13 +25,16 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.75;
-            filter: brightness(0.85) contrast(1.08);
+            opacity: 0.35;
+            filter: brightness(1.05) contrast(0.98);
+            transition: opacity 0.3s ease, filter 0.3s ease;
         }
         .hero2-overlay {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at center, rgba(11,11,11,0.35) 0%, rgba(11,11,11,0.72) 100%), linear-gradient(180deg, rgba(11,11,11,0.55) 0%, rgba(11,11,11,0.2) 50%, rgba(11,11,11,0.85) 100%);
+            background: radial-gradient(circle at center, rgba(248,246,242,0.72) 0%, rgba(248,246,242,0.95) 100%), 
+                        linear-gradient(180deg, rgba(248,246,242,0.85) 0%, rgba(248,246,242,0.6) 50%, rgba(248,246,242,0.95) 100%);
+            transition: background 0.3s ease;
         }
         .hero2-content {
             position: relative;
@@ -59,31 +63,29 @@
             font-weight: 700;
             letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: var(--primary-light);
+            color: var(--primary);
         }
         .hero2-title {
             font-size: clamp(2.6rem, 5.5vw, 4.5rem);
             font-weight: 900;
-            color: #FFFFFF;
+            color: var(--text-dark);
             line-height: 1.06;
             margin-bottom: 24px;
             text-align: center;
-            text-shadow: 0 4px 24px rgba(0,0,0,0.85);
         }
         .hero2-title em {
             font-style: italic;
-            color: var(--primary-light);
+            color: var(--primary);
         }
         .hero2-desc {
             font-size: 1.05rem;
-            color: rgba(255,255,255,0.88);
+            color: var(--text-body);
             line-height: 1.85;
             margin-bottom: 40px;
             max-width: 580px;
             margin-left: auto;
             margin-right: auto;
             text-align: center;
-            text-shadow: 0 2px 12px rgba(0,0,0,0.8);
         }
         .hero2-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
         .hero2-awards {
@@ -91,7 +93,7 @@
             gap: 28px;
             margin-top: 56px;
             padding-top: 36px;
-            border-top: 1px solid rgba(255,255,255,0.12);
+            border-top: 1px solid var(--border);
             flex-wrap: wrap;
             justify-content: center;
             width: 100%;
@@ -105,21 +107,80 @@
         .hero2-award-icon {
             width: 42px; height: 42px;
             border-radius: 10px;
-            background: rgba(184,134,11,0.18);
-            border: 1px solid rgba(184,134,11,0.35);
+            background: var(--primary-subtle);
+            border: 1px solid rgba(184,134,11,0.3);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--primary-light);
+            color: var(--primary);
             font-size: 0.95rem;
             flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+        }
+        .hero2-award-text { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; }
+        .hero2-award-text strong { display: block; color: var(--text-dark); font-size: 0.88rem; }
+
+        .hero2 .btn-secondary {
+            background: var(--surface-alt);
+            color: var(--text-dark);
+            border: 1px solid var(--border-dark);
+            font-weight: 600;
+        }
+        .hero2 .btn-secondary:hover {
+            background: var(--primary-subtle);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Dark Mode Overrides for Home2 Hero */
+        html.dark .hero2 {
+            background: #0B0B0B;
+        }
+        html.dark .hero2-bg-img {
+            opacity: 0.75;
+            filter: brightness(0.85) contrast(1.08);
+        }
+        html.dark .hero2-overlay {
+            background: radial-gradient(circle at center, rgba(11,11,11,0.35) 0%, rgba(11,11,11,0.72) 100%), linear-gradient(180deg, rgba(11,11,11,0.55) 0%, rgba(11,11,11,0.2) 50%, rgba(11,11,11,0.85) 100%);
+        }
+        html.dark .hero2-eyebrow-text {
+            color: var(--primary-light);
+        }
+        html.dark .hero2-title {
+            color: #FFFFFF;
+            text-shadow: 0 4px 24px rgba(0,0,0,0.85);
+        }
+        html.dark .hero2-title em {
+            color: var(--primary-light);
+        }
+        html.dark .hero2-desc {
+            color: rgba(255,255,255,0.88);
+            text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+        }
+        html.dark .hero2-awards {
+            border-top: 1px solid rgba(255,255,255,0.12);
+        }
+        html.dark .hero2-award-icon {
+            background: rgba(184,134,11,0.18);
+            border: 1px solid rgba(184,134,11,0.35);
+            color: var(--primary-light);
             box-shadow: 0 4px 14px rgba(0,0,0,0.25);
         }
-        .hero2-award-text { font-size: 0.8rem; color: rgba(255,255,255,0.65); line-height: 1.4; }
-        .hero2-award-text strong { display: block; color: #FFFFFF; font-size: 0.88rem; }
+        html.dark .hero2-award-text { color: rgba(255,255,255,0.65); }
+        html.dark .hero2-award-text strong { color: #FFFFFF; }
+        html.dark .hero2 .btn-secondary {
+            background: rgba(255,255,255,0.06);
+            color: #FFFFFF;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+        html.dark .hero2 .btn-secondary:hover {
+            background: rgba(184,134,11,0.2);
+            border-color: #D4A017;
+            color: #D4A017;
+        }
 
         @media (max-width: 768px) {
-            .hero2-content { padding: 90px 0 60px; }
+            .hero2-content { padding: calc(var(--nav-height) + 40px) 0 60px; }
             .hero2-awards {
                 flex-direction: column;
                 align-items: center;
@@ -470,7 +531,7 @@
                 <a href="contact.html#booking" class="btn btn-primary btn-lg" id="h2-book-btn">
                     <i class="fas fa-calendar-alt"></i> Reserve Your Chair
                 </a>
-                <a href="gallery.html" class="btn btn-secondary btn-lg" id="h2-gallery-btn" style="border-color:rgba(255,255,255,0.2);color:#FFFFFF;">
+                <a href="gallery.html" class="btn btn-secondary btn-lg" id="h2-gallery-btn">
                     View Our Work
                 </a>
             </div>

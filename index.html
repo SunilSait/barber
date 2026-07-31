@@ -16,15 +16,16 @@
             display:flex;
             align-items:center;
             overflow:hidden;
-            background:#0D0D0D;
+            background: var(--bg);
+            transition: background 0.3s ease;
         }
-        /* Subtle dark bg texture */
+        /* Subtle light bg texture */
         .hero::before {
             content:'';
             position:absolute;
             inset:0;
-            background: radial-gradient(ellipse 80% 60% at 20% 50%, rgba(184,134,11,0.08) 0%, transparent 60%),
-                        radial-gradient(ellipse 50% 50% at 70% 80%, rgba(184,134,11,0.05) 0%, transparent 60%);
+            background: radial-gradient(ellipse 80% 60% at 20% 50%, rgba(184,134,11,0.10) 0%, transparent 65%),
+                        radial-gradient(ellipse 50% 50% at 70% 80%, rgba(184,134,11,0.06) 0%, transparent 65%);
             z-index:0;
         }
         .hero-inner {
@@ -50,7 +51,7 @@
             gap:8px;
             background:rgba(184,134,11,0.14);
             border:1px solid rgba(184,134,11,0.38);
-            color:#D4A017;
+            color: var(--primary-dark);
             font-size:0.72rem;
             font-weight:700;
             letter-spacing:0.18em;
@@ -62,15 +63,15 @@
         .hero-title {
             font-size:clamp(2.6rem,5vw,4.6rem);
             font-weight:900;
-            color:#FFFFFF;
+            color: var(--text-dark);
             line-height:1.07;
             margin-bottom:22px;
             text-align:left;
         }
-        .hero-title span { color:#D4A017; }
+        .hero-title span { color: var(--primary); }
         .hero-desc {
             font-size:1.05rem;
-            color:rgba(255,255,255,0.65);
+            color: var(--text-body);
             max-width:480px;
             line-height:1.82;
             margin-bottom:36px;
@@ -82,7 +83,7 @@
             gap:32px;
             margin-top:52px;
             padding-top:36px;
-            border-top:1px solid rgba(255,255,255,0.1);
+            border-top:1px solid var(--border);
             flex-wrap:wrap;
             width:100%;
         }
@@ -90,7 +91,7 @@
             font-family:'Playfair Display',serif;
             font-size:2rem;
             font-weight:800;
-            color:#D4A017;
+            color: var(--primary);
             line-height:1;
         }
         .hero-stat-label {
@@ -98,7 +99,7 @@
             font-weight:600;
             letter-spacing:0.1em;
             text-transform:uppercase;
-            color:rgba(255,255,255,0.45);
+            color: var(--text-muted);
             margin-top:4px;
         }
         /* RIGHT — Image Collage (2x2 Grid) */
@@ -116,8 +117,8 @@
             overflow:hidden;
             position:relative;
             height:270px;
-            box-shadow:0 12px 40px rgba(0,0,0,0.55);
-            border:1px solid rgba(255,255,255,0.07);
+            box-shadow: var(--shadow-md);
+            border:1px solid var(--border);
         }
         .hero-col-img img {
             width:100%; height:100%;
@@ -138,7 +139,45 @@
             text-transform:uppercase;
             opacity:0;
             transform:translateY(8px);
-            transition:all 0.3s ease;
+        }
+
+        .hero .btn-secondary {
+            background: var(--surface-alt);
+            color: var(--text-dark);
+            border: 1px solid var(--border-dark);
+            font-weight: 600;
+        }
+        .hero .btn-secondary:hover {
+            background: var(--primary-subtle);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Dark Mode Hero Overrides */
+        html.dark .hero {
+            background:#0D0D0D;
+        }
+        html.dark .hero::before {
+            background: radial-gradient(ellipse 80% 60% at 20% 50%, rgba(184,134,11,0.08) 0%, transparent 60%),
+                        radial-gradient(ellipse 50% 50% at 70% 80%, rgba(184,134,11,0.05) 0%, transparent 60%);
+        }
+        html.dark .hero-badge { color:#D4A017; }
+        html.dark .hero-title { color:#FFFFFF; }
+        html.dark .hero-title span { color:#D4A017; }
+        html.dark .hero-desc { color:rgba(255,255,255,0.65); }
+        html.dark .hero-stats { border-top:1px solid rgba(255,255,255,0.1); }
+        html.dark .hero-stat-num { color:#D4A017; }
+        html.dark .hero-stat-label { color:rgba(255,255,255,0.45); }
+        html.dark .hero-col-img { box-shadow:0 12px 40px rgba(0,0,0,0.55); border:1px solid rgba(255,255,255,0.07); }
+        html.dark .hero .btn-secondary {
+            background: rgba(255,255,255,0.06);
+            color: #FFFFFF;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+        html.dark .hero .btn-secondary:hover {
+            background: rgba(184,134,11,0.2);
+            border-color: #D4A017;
+            color: #D4A017;
         }
         .hero-col-img:hover .hci-label { opacity:1; transform:translateY(0); }
         /* Gold accent border on first image */
@@ -161,7 +200,7 @@
         }
         /* Responsive */
         @media(max-width:1024px) {
-            .hero-inner { grid-template-columns:1fr; gap:40px; padding:80px 0 60px; }
+            .hero-inner { grid-template-columns:1fr; gap:40px; padding:calc(var(--nav-height) + 36px) 0 60px; }
             .hero-left { align-items:center; text-align:center; }
             .hero-title { text-align:center; }
             .hero-desc { text-align:center; margin-left:auto; margin-right:auto; }
@@ -171,6 +210,7 @@
             .hero-col-img { height:260px; }
         }
         @media(max-width:480px) {
+            .hero-inner { padding:calc(var(--nav-height) + 28px) 0 48px; }
             .hero-right { grid-template-columns:1fr; max-width:340px; }
             .hero-col-img { height:240px; }
         }
@@ -293,7 +333,7 @@
                     <a href="contact.html#booking" class="btn btn-primary btn-lg" id="hero-book-btn">
                         <i class="fas fa-calendar-check"></i> Book Appointment
                     </a>
-                    <a href="services.html" class="btn btn-secondary btn-lg" id="hero-services-btn" style="border-color:rgba(255,255,255,0.3);color:#FFFFFF;">
+                    <a href="services.html" class="btn btn-secondary btn-lg" id="hero-services-btn">
                         <i class="fas fa-scissors"></i> Our Services
                     </a>
                 </div>

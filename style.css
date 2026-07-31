@@ -419,7 +419,9 @@ input,textarea,select,button { font-family:'Inter', sans-serif; outline:none; bo
     border-radius:3px;
     margin: 18px 0 28px;
 }
-.text-center .gold-divider { margin: 18px auto 28px; }
+.text-center .gold-divider,
+[style*="text-align:center"] .gold-divider,
+[style*="text-align: center"] .gold-divider { margin: 18px auto 28px; }
 
 /* ============================================================
    CARDS
@@ -467,7 +469,7 @@ input,textarea,select,button { font-family:'Inter', sans-serif; outline:none; bo
 .page-banner {
     position:relative;
     min-height:340px;
-    padding: 64px 0;
+    padding: calc(var(--nav-height) + 54px) 24px 54px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -511,7 +513,18 @@ input,textarea,select,button { font-family:'Inter', sans-serif; outline:none; bo
     margin-left: auto;
     margin-right: auto;
 }
-@media(max-width:768px){ .page-banner { min-height:260px; padding: 48px 0; } }
+@media(max-width:768px){ 
+    .page-banner { 
+        min-height:260px; 
+        padding: calc(var(--nav-height) + 42px) 20px 42px; 
+    } 
+}
+@media(max-width:360px){ 
+    .page-banner { 
+        min-height:240px; 
+        padding: calc(var(--nav-height) + 32px) 16px 32px; 
+    } 
+}
 
 /* ============================================================
    FOOTER

@@ -26,20 +26,35 @@
             border-radius: var(--radius-xl);
             overflow: hidden;
         }
+        .price-table-cover {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+        .price-table-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .price-table:hover .price-table-cover img {
+            transform: scale(1.06);
+        }
         .price-table-head {
             background: var(--secondary-dark);
-            padding: 20px 28px;
+            padding: 18px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         .price-table-head-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: #FFFFFF;
         }
-        .price-table-head-icon { color: var(--primary-light); font-size: 1.1rem; }
         .price-row {
             display: flex;
             align-items: center;
@@ -210,9 +225,11 @@
         <div class="grid-2" style="gap:28px;">
             <!-- Haircuts -->
             <div class="price-table aos delay-1">
+                <div class="price-table-cover">
+                    <img src="assets/pricing_card_haircut.png" alt="Haircuts & Fades" loading="lazy">
+                </div>
                 <div class="price-table-head">
                     <div class="price-table-head-title">Haircuts & Fades</div>
-                    <i class="fas fa-cut price-table-head-icon"></i>
                 </div>
                 <div class="price-row"><div><div class="price-row-name">Classic Haircut</div><div class="price-row-duration">30–40 min</div></div><div class="price-row-amount">$25</div></div>
                 <div class="price-row"><div><div class="price-row-name">Skin Fade</div><div class="price-row-duration">35–45 min</div></div><div class="price-row-amount">$32</div></div>
@@ -223,9 +240,11 @@
             </div>
             <!-- Beard & Shave -->
             <div class="price-table aos delay-2">
+                <div class="price-table-cover">
+                    <img src="assets/pricing_card_beard.png" alt="Beard & Shave" loading="lazy">
+                </div>
                 <div class="price-table-head">
                     <div class="price-table-head-title">Beard & Shave</div>
-                    <i class="fas fa-user-tie price-table-head-icon"></i>
                 </div>
                 <div class="price-row"><div><div class="price-row-name">Beard Trim & Shape</div><div class="price-row-duration">20–30 min</div></div><div class="price-row-amount">$18</div></div>
                 <div class="price-row"><div><div class="price-row-name">Full Beard Sculpt</div><div class="price-row-duration">30–40 min</div></div><div class="price-row-amount">$25</div></div>
@@ -236,9 +255,11 @@
             </div>
             <!-- Treatments -->
             <div class="price-table aos delay-1">
+                <div class="price-table-cover">
+                    <img src="assets/pricing_card_treatments.png" alt="Treatments & Extras" loading="lazy">
+                </div>
                 <div class="price-table-head">
                     <div class="price-table-head-title">Treatments & Extras</div>
-                    <i class="fas fa-spa price-table-head-icon"></i>
                 </div>
                 <div class="price-row"><div><div class="price-row-name">Scalp Treatment & Massage</div><div class="price-row-duration">25–35 min</div></div><div class="price-row-amount">$30</div></div>
                 <div class="price-row"><div><div class="price-row-name">Style & Blow-Dry</div><div class="price-row-duration">15–20 min</div></div><div class="price-row-amount">$20</div></div>
@@ -248,9 +269,11 @@
             </div>
             <!-- Color -->
             <div class="price-table aos delay-2">
+                <div class="price-table-cover">
+                    <img src="assets/pricing_card_coloring.png" alt="Hair Coloring" loading="lazy">
+                </div>
                 <div class="price-table-head">
                     <div class="price-table-head-title">Hair Coloring</div>
-                    <i class="fas fa-palette price-table-head-icon"></i>
                 </div>
                 <div class="price-row"><div><div class="price-row-name">Grey Blending</div><div class="price-row-duration">45–60 min</div></div><div class="price-row-amount">$55</div></div>
                 <div class="price-row"><div><div class="price-row-name">Full Color</div><div class="price-row-duration">60–80 min</div></div><div class="price-row-amount">$75</div></div>
@@ -260,19 +283,6 @@
             </div>
         </div>
 
-        <!-- Package table -->
-        <div style="margin-top:40px;">
-            <div class="price-table aos">
-                <div class="price-table-head">
-                    <div class="price-table-head-title">Grooming Packages (Best Value)</div>
-                    <i class="fas fa-star price-table-head-icon"></i>
-                </div>
-                <div class="price-row"><div><div class="price-row-name">The Classic Gentleman — Haircut + Neck Shave + Hot Towel Finish</div><div class="price-row-duration">50–60 min</div></div><div class="price-row-amount">$38</div></div>
-                <div class="price-row"><div><div class="price-row-name">The Modern Executive — Fade + Beard Sculpt + Straight Razor Shave</div><div class="price-row-duration">70–80 min</div></div><div class="price-row-amount">$65</div></div>
-                <div class="price-row"><div><div class="price-row-name">The Full VIP Treatment — Complete Grooming + Scalp + Styling</div><div class="price-row-duration">90–120 min</div></div><div class="price-row-amount">$95</div></div>
-                <div class="price-row"><div><div class="price-row-name">Father & Son — 2 Haircuts (Adult + Child)</div><div class="price-row-duration">60 min</div></div><div class="price-row-amount">$40</div></div>
-            </div>
-        </div>
     </div>
 </section>
 

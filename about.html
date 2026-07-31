@@ -24,13 +24,14 @@
         }
         .story-exp-tag {
             position:absolute;
-            top:24px; left:-24px;
+            top:20px; left:20px;
             background:var(--primary);
             color:#FFF;
             padding:16px 20px;
             border-radius:14px;
             text-align:center;
             box-shadow: 0 8px 28px rgba(184,134,11,0.45);
+            z-index:3;
         }
         .story-exp-tag-num { font-family:'Playfair Display',serif; font-size:2rem; font-weight:900; line-height:1; }
         .story-exp-tag-text { font-size:0.7rem; font-weight:600; letter-spacing:0.1em; opacity:.85; }
@@ -55,7 +56,11 @@
         .value-title { font-size:1rem; font-weight:700; color:var(--text-dark); margin-bottom:5px; }
         .value-desc { font-size:0.88rem; color:var(--text-muted); line-height:1.7; }
 
-        @media(max-width:1024px){ .story-grid { grid-template-columns:1fr; gap:40px; } .story-img-accent { display:none; } }
+        @media(max-width:1024px){
+            .story-grid { grid-template-columns:1fr; gap:40px; }
+            .story-img-accent { display:none; }
+            .story-exp-tag { top:16px; left:16px; }
+        }
 
         /* Timeline */
         .timeline { position:relative; padding-left:32px; }
@@ -65,6 +70,163 @@
         .tl-year { font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--primary); margin-bottom:6px; }
         .tl-title { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:var(--text-dark); margin-bottom:6px; }
         .tl-desc { font-size:0.88rem; color:var(--text-muted); line-height:1.7; }
+
+        /* ---- Vision & Mission ---- */
+        .vm-grid {
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:32px;
+            margin-top:56px;
+        }
+        .vm-card {
+            background:var(--surface-card);
+            border:1px solid var(--border);
+            border-radius:20px;
+            padding:44px 36px;
+            position:relative;
+            overflow:hidden;
+            transition:transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+        .vm-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-xl); border-color:var(--primary-glow); }
+        .vm-card::before {
+            content:'';
+            position:absolute;
+            top:-60px; right:-60px;
+            width:180px; height:180px;
+            border-radius:50%;
+            background:radial-gradient(circle,rgba(184,134,11,0.12) 0%,transparent 70%);
+            pointer-events:none;
+        }
+        .vm-icon-wrap {
+            width:72px; height:72px;
+            border-radius:18px;
+            background:linear-gradient(135deg,rgba(184,134,11,0.2),rgba(184,134,11,0.06));
+            border:1px solid rgba(184,134,11,0.3);
+            display:flex; align-items:center; justify-content:center;
+            font-size:1.7rem;
+            color:var(--primary);
+            margin-bottom:24px;
+        }
+        .vm-label {
+            font-size:0.7rem;
+            font-weight:800;
+            letter-spacing:0.18em;
+            text-transform:uppercase;
+            color:var(--primary);
+            margin-bottom:10px;
+        }
+        .vm-title { font-size:1.35rem; font-weight:800; color:var(--text-dark); margin-bottom:14px; line-height:1.3; }
+        .vm-desc { font-size:0.9rem; color:var(--text-muted); line-height:1.82; }
+        .vm-bullets { list-style:none; margin-top:18px; padding:0; }
+        .vm-bullets li {
+            display:flex;
+            align-items:flex-start;
+            gap:10px;
+            font-size:0.87rem;
+            color:var(--text-muted);
+            margin-bottom:10px;
+        }
+        .vm-bullets li::before {
+            content:'✦';
+            color:var(--primary);
+            font-size:0.65rem;
+            margin-top:3px;
+            flex-shrink:0;
+        }
+        @media(max-width:768px){ .vm-grid { grid-template-columns:1fr; } }
+
+        /* ---- Popular Services (about page highlights) ---- */
+        .pop-services-grid {
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:center;
+            gap:24px;
+            margin-top:56px;
+        }
+        .pop-svc-card {
+            background:var(--surface-card);
+            border:1px solid var(--border);
+            border-radius:16px;
+            padding:32px 24px;
+            text-align:center;
+            transition:transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            position:relative;
+            overflow:hidden;
+            flex:1 1 300px;
+            max-width:380px;
+            width:100%;
+        }
+        .pop-svc-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-lg); border-color:rgba(212,160,23,0.45); }
+        .pop-svc-card .pop-badge {
+            display:inline-block;
+            background:var(--primary);
+            color:#fff;
+            font-size:0.62rem;
+            font-weight:800;
+            letter-spacing:0.12em;
+            text-transform:uppercase;
+            padding:3px 10px;
+            border-radius:999px;
+            margin-bottom:18px;
+        }
+        .pop-svc-img {
+            width:80px; height:80px;
+            border-radius:50%;
+            overflow:hidden;
+            margin:0 auto 18px;
+            border:2px solid var(--primary);
+            box-shadow:0 4px 12px rgba(0,0,0,0.15);
+            transition:transform 0.3s ease, border-color 0.3s ease;
+        }
+        .pop-svc-img img {
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            display:block;
+            transition:transform 0.4s ease;
+        }
+        .pop-svc-card:hover .pop-svc-img {
+            border-color:var(--primary);
+            transform:scale(1.08);
+        }
+        .pop-svc-card:hover .pop-svc-img img {
+            transform:scale(1.1);
+        }
+        .pop-svc-name { font-size:1rem; font-weight:700; color:var(--text-dark); margin-bottom:8px; }
+        .pop-svc-desc { font-size:0.82rem; color:var(--text-muted); line-height:1.7; margin-bottom:14px; }
+        .pop-svc-price { font-size:1.05rem; font-weight:800; color:var(--primary); }
+
+        /* ---- Shop Amenities ---- */
+        .amenities-grid {
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            gap:24px;
+            margin-top:56px;
+        }
+        .amenity-card {
+            background:var(--surface-card);
+            border:1px solid var(--border);
+            border-radius:16px;
+            padding:28px 20px;
+            text-align:center;
+            transition:transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+        .amenity-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-lg); border-color:var(--primary-glow); }
+        .amenity-icon {
+            width:60px; height:60px;
+            border-radius:14px;
+            background:var(--primary-subtle);
+            color:var(--primary);
+            display:flex; align-items:center; justify-content:center;
+            font-size:1.4rem;
+            margin:0 auto 16px;
+            transition:background 0.3s;
+        }
+        .amenity-card:hover .amenity-icon { background:rgba(184,134,11,0.22); }
+        .amenity-name { font-size:0.9rem; font-weight:700; color:var(--text-dark); margin-bottom:6px; }
+        .amenity-desc { font-size:0.78rem; color:var(--text-muted); line-height:1.65; }
+        @media(max-width:900px){ .amenities-grid { grid-template-columns:repeat(2,1fr); } }
+        @media(max-width:480px){ .amenities-grid { grid-template-columns:1fr; } }
     </style>
 </head>
 <body>
@@ -198,6 +360,118 @@
                         <a href="#" class="icon-btn" aria-label="YouTube" style="font-size:0.8rem;"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== VISION & MISSION ===== -->
+<section class="section bg-alt" id="vision-mission">
+    <div class="container">
+        <div class="text-center">
+            <div class="section-label aos">Our Philosophy</div>
+            <h2 class="section-title aos delay-1">Vision &amp; Mission</h2>
+            <div class="gold-divider"></div>
+            <p class="section-desc aos delay-2">Every great barbershop stands on a clear purpose. Ours is rooted in craft, community, and the belief that every man deserves to look his best.</p>
+        </div>
+        <div class="vm-grid">
+            <!-- Vision -->
+            <div class="vm-card aos delay-1">
+                <div class="vm-icon-wrap"><i class="fas fa-eye"></i></div>
+                <div class="vm-label">Our Vision</div>
+                <div class="vm-title">To Be the Most Trusted Barbershop in the City</div>
+                <p class="vm-desc">We envision a world where every man walks out of our doors feeling confident, sharp, and ready to conquer the day. BarberCo strives to set the gold standard in men's grooming across the region.</p>
+                <ul class="vm-bullets">
+                    <li>Recognized city-wide as the #1 premium barbershop</li>
+                    <li>Expanding our craft without compromising quality</li>
+                    <li>Inspiring a new generation of skilled barbers</li>
+                    <li>Building a community hub centered on brotherhood</li>
+                </ul>
+            </div>
+            <!-- Mission -->
+            <div class="vm-card aos delay-2">
+                <div class="vm-icon-wrap"><i class="fas fa-bullseye"></i></div>
+                <div class="vm-label">Our Mission</div>
+                <div class="vm-title">Delivering Excellence with Every Single Cut</div>
+                <p class="vm-desc">Our mission is to provide every client with a premium grooming experience that blends classic barbershop tradition with modern technique — using the finest tools and products on the market.</p>
+                <ul class="vm-bullets">
+                    <li>Certified master barbers serving every chair</li>
+                    <li>Sourcing only top-shelf professional-grade products</li>
+                    <li>Creating a welcoming, inclusive environment for all men</li>
+                    <li>Continuous training to stay at the forefront of style</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== POPULAR SERVICES ===== -->
+<section class="section" id="popular-services">
+    <div class="container">
+        <div class="text-center">
+            <div class="section-label aos">What We Do Best</div>
+            <h2 class="section-title aos delay-1">Our Most Popular Services</h2>
+            <div class="gold-divider"></div>
+            <p class="section-desc aos delay-2">From classic fades to indulgent hot towel shaves, these are the services our clients keep coming back for.</p>
+        </div>
+        <div class="pop-services-grid">
+            <div class="pop-svc-card aos delay-1">
+                <span class="pop-badge">Fan Favourite</span>
+                <div class="pop-svc-img"><img src="assets/about_pop_haircut.png" alt="Haircut & Fade" loading="lazy"></div>
+                <div class="pop-svc-name">Haircut &amp; Fade</div>
+                <p class="pop-svc-desc">Our signature precision fade tailored to your face shape. Clean lines, sharp edges, flawless finish.</p>
+                <div class="pop-svc-price">From $25</div>
+            </div>
+            <div class="pop-svc-card aos delay-2">
+                <span class="pop-badge">Best Seller</span>
+                <div class="pop-svc-img"><img src="assets/about_pop_beard.png" alt="Beard Grooming" loading="lazy"></div>
+                <div class="pop-svc-name">Beard Grooming</div>
+                <p class="pop-svc-desc">Shape, define &amp; condition your beard with expert technique and premium beard oil treatment.</p>
+                <div class="pop-svc-price">From $18</div>
+            </div>
+            <div class="pop-svc-card aos delay-3">
+                <span class="pop-badge">Premium</span>
+                <div class="pop-svc-img"><img src="assets/about_pop_shave.png" alt="Hot Towel Shave" loading="lazy"></div>
+                <div class="pop-svc-name">Hot Towel Shave</div>
+                <p class="pop-svc-desc">A classic ritual — hot towel prep, luxe shaving cream, and a precise straight razor finish.</p>
+                <div class="pop-svc-price">From $35</div>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:40px;">
+            <a href="services.html" class="btn btn-outline-gold btn-lg" id="about-view-all-services">View All Services &amp; Pricing</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SHOP AMENITIES ===== -->
+<section class="section bg-alt" id="shop-amenities">
+    <div class="container">
+        <div class="text-center">
+            <div class="section-label aos">The Experience</div>
+            <h2 class="section-title aos delay-1">Shop Amenities</h2>
+            <div class="gold-divider"></div>
+            <p class="section-desc aos delay-2">We've created a space that feels as good as you'll look when you leave. Step into comfort, style, and genuine hospitality.</p>
+        </div>
+        <div class="amenities-grid">
+            <div class="amenity-card aos delay-1">
+                <div class="amenity-icon"><i class="fas fa-wifi"></i></div>
+                <div class="amenity-name">Free High-Speed Wi-Fi</div>
+                <p class="amenity-desc">Stay connected while you wait. Fast, reliable Wi-Fi throughout the shop.</p>
+            </div>
+            <div class="amenity-card aos delay-2">
+                <div class="amenity-icon"><i class="fas fa-coffee"></i></div>
+                <div class="amenity-name"> Refreshments</div>
+                <p class="amenity-desc">Enjoy a complimentary coffee, espresso, or cold brew while you relax in the chair.</p>
+            </div>
+            <div class="amenity-card aos delay-3">
+                <div class="amenity-icon"><i class="fas fa-tv"></i></div>
+                <div class="amenity-name">Entertainment</div>
+                <p class="amenity-desc">Multiple screens showing live sports, news, and lifestyle content for your enjoyment.</p>
+            </div>
+            <div class="amenity-card aos delay-4">
+                <div class="amenity-icon"><i class="fas fa-parking"></i></div>
+                <div class="amenity-name">Free Parking</div>
+                <p class="amenity-desc">Complimentary dedicated parking spots right outside our front door for all clients.</p>
             </div>
         </div>
     </div>

@@ -123,16 +123,28 @@
             transition: var(--transition);
         }
         .mini-service:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: var(--primary-glow); }
-        .mini-svc-icon {
-            width: 56px; height: 56px;
-            border-radius: var(--radius-md);
-            background: var(--primary-subtle);
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            margin: 0 auto 16px;
+        .mini-svc-img {
+            width: 100%;
+            height: 160px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+            transition: var(--transition);
+        }
+        .mini-svc-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .mini-service:hover .mini-svc-img img {
+            transform: scale(1.06);
+        }
+        .mini-service:hover .mini-svc-img {
+            border-color: var(--primary);
         }
         .mini-svc-name { font-size: 1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
         .mini-svc-price { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
@@ -297,28 +309,28 @@
         </div>
         <div class="grid-4">
             <div class="mini-service aos delay-1">
-                <div class="mini-svc-icon"><i class="fas fa-child"></i></div>
+                <div class="mini-svc-img"><img src="assets/mini_kids_haircut.png" alt="Kids Haircut" loading="lazy"></div>
                 <div class="mini-svc-name">Kids Haircut</div>
                 <div class="mini-svc-price">$18</div>
                 <div class="mini-svc-time"><i class="fas fa-clock"></i> 20 – 30 min</div>
                 <p style="font-size:0.8rem;color:var(--text-muted);margin-top:10px;line-height:1.6;">Fun and patient cuts for little ones aged 3–12. We make it a great experience for kids.</p>
             </div>
             <div class="mini-service aos delay-2">
-                <div class="mini-svc-icon"><i class="fas fa-wind"></i></div>
+                <div class="mini-svc-img"><img src="assets/mini_scalp_treatment.png" alt="Scalp Treatment" loading="lazy"></div>
                 <div class="mini-svc-name">Scalp Treatment</div>
                 <div class="mini-svc-price">$30</div>
                 <div class="mini-svc-time"><i class="fas fa-clock"></i> 25 – 35 min</div>
                 <p style="font-size:0.8rem;color:var(--text-muted);margin-top:10px;line-height:1.6;">Deep-cleansing scalp massage with nourishing treatment oils. Promotes healthy hair growth.</p>
             </div>
             <div class="mini-service aos delay-3">
-                <div class="mini-svc-icon"><i class="fas fa-star"></i></div>
+                <div class="mini-svc-img"><img src="assets/mini_vip_package.png" alt="Full VIP Package" loading="lazy"></div>
                 <div class="mini-svc-name">Full VIP Package</div>
                 <div class="mini-svc-price">$95</div>
                 <div class="mini-svc-time"><i class="fas fa-clock"></i> 90 – 120 min</div>
                 <p style="font-size:0.8rem;color:var(--text-muted);margin-top:10px;line-height:1.6;">The complete treatment: haircut + beard + shave + scalp + styling. The ultimate experience.</p>
             </div>
             <div class="mini-service aos delay-4">
-                <div class="mini-svc-icon"><i class="fas fa-spray-can"></i></div>
+                <div class="mini-svc-img"><img src="assets/mini_style_blowdry.png" alt="Style & Blow-Dry" loading="lazy"></div>
                 <div class="mini-svc-name">Style & Blow-Dry</div>
                 <div class="mini-svc-price">$20</div>
                 <div class="mini-svc-time"><i class="fas fa-clock"></i> 15 – 20 min</div>
@@ -341,10 +353,37 @@
                 <div class="gold-divider"></div>
                 <p style="font-size:0.95rem;color:var(--text-muted);line-height:1.85;margin-bottom:28px;">Every product we use in the shop is handpicked for performance, safety and quality. Our shelves feature industry leaders trusted by professionals worldwide.</p>
                 <div class="grid-2" style="gap:12px;margin-bottom:32px;">
-                    <div style="padding:16px;background:var(--surface-alt);border-radius:12px;border:1px solid var(--border);text-align:center;font-weight:600;font-size:0.85rem;color:var(--text-dark);">Baxter of California</div>
-                    <div style="padding:16px;background:var(--surface-alt);border-radius:12px;border:1px solid var(--border);text-align:center;font-weight:600;font-size:0.85rem;color:var(--text-dark);">American Crew</div>
-                    <div style="padding:16px;background:var(--surface-alt);border-radius:12px;border:1px solid var(--border);text-align:center;font-weight:600;font-size:0.85rem;color:var(--text-dark);">Billy Jealousy</div>
-                    <div style="padding:16px;background:var(--surface-alt);border-radius:12px;border:1px solid var(--border);text-align:center;font-weight:600;font-size:0.85rem;color:var(--text-dark);">Layrite</div>
+                    <div style="padding:16px;background:var(--surface-alt);border-radius:12px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;gap:10px;font-weight:600;font-size:0.85rem;color:var(--text-dark);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v4M9 3h6M10 6h4v3h-4zM7 11a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v10a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V11z"/>
+                            <path d="M12 14v3M10 15.5h4"/>
+                        </svg>
+                        <span>Baxter of California</span>
+                    </div>
+                    <div style="padding:16px;background:var(--surface-alt);border-radius:12px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;gap:10px;font-weight:600;font-size:0.85rem;color:var(--text-dark);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <ellipse cx="12" cy="7" rx="9" ry="3"/>
+                            <path d="M3 7v10c0 1.66 4.03 3 9 3s9-1.34 9-3V7"/>
+                            <path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/>
+                        </svg>
+                        <span>American Crew</span>
+                    </div>
+                    <div style="padding:16px;background:var(--surface-alt);border-radius:12px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;gap:10px;font-weight:600;font-size:0.85rem;color:var(--text-dark);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a4 4 0 0 0-4 4v2h8V6a4 4 0 0 0-4-4z"/>
+                            <path d="M6 10h12v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V10z"/>
+                            <circle cx="12" cy="15" r="2"/>
+                        </svg>
+                        <span>Billy Jealousy</span>
+                    </div>
+                    <div style="padding:16px;background:var(--surface-alt);border-radius:12px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;gap:10px;font-weight:600;font-size:0.85rem;color:var(--text-dark);">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8 8h8v13a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V8z"/>
+                            <path d="M10 5h4v3h-4zM12 2v3"/>
+                            <path d="M17 3l2-1M18 6h2M17 9l2 1"/>
+                        </svg>
+                        <span>Layrite</span>
+                    </div>
                 </div>
                 <div class="flex-center">
                     <a href="contact.html#booking" class="btn btn-primary" id="svc-book-cta"><i class="fas fa-calendar-check"></i> Book Your Service</a>
