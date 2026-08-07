@@ -115,6 +115,137 @@
         }
         .faq-item.open .faq-question i { transform: rotate(45deg); }
         .faq-item.open .faq-answer { display: block; }
+
+        /* Redesigned Transparent Pricing Section */
+        .tp-wrapper {
+            position: relative;
+            background: linear-gradient(135deg, var(--surface-card) 0%, var(--surface-alt) 100%);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 48px 40px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+        .tp-header {
+            max-width: 680px;
+            margin: 0 auto 40px;
+            text-align: center;
+        }
+        .tp-header .gold-divider {
+            margin: 18px auto 28px;
+        }
+        .tp-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: var(--primary-subtle);
+            border: 1px solid rgba(184, 134, 11, 0.25);
+            border-radius: 999px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .tp-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 36px;
+        }
+        .tp-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 24px 20px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .tp-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(184, 134, 11, 0.4);
+            box-shadow: 0 12px 30px rgba(184, 134, 11, 0.12);
+        }
+        .tp-icon-wrapper {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: var(--primary-subtle);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin: 0 auto 16px;
+            transition: var(--transition);
+        }
+        .tp-card:hover .tp-icon-wrapper {
+            background: var(--primary);
+            color: #FFFFFF;
+            transform: scale(1.08);
+        }
+        .tp-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+        .tp-card-desc {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        .tp-highlights-bar {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .tp-highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.88rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        .tp-highlight-item i {
+            color: var(--primary);
+            font-size: 1rem;
+        }
+        .tp-highlight-price {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--primary);
+            margin-left: 4px;
+        }
+        @media(max-width: 1024px) {
+            .tp-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media(max-width: 600px) {
+            .tp-wrapper {
+                padding: 32px 20px;
+            }
+            .tp-grid {
+                grid-template-columns: 1fr;
+            }
+            .tp-highlights-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
     </style>
 </head>
 <body>
@@ -130,13 +261,70 @@
     </div>
 </div>
 
-<!-- ===== INTRO ===== -->
-<section class="section-sm">
-    <div class="container text-center">
-        <div class="section-label aos">Transparent Pricing</div>
-        <h2 class="section-title aos delay-1">No Hidden Fees. Just Great Value.</h2>
-        <div class="gold-divider"></div>
-        <p class="section-desc aos delay-2">Every price listed is what you pay. We believe great grooming should be accessible — no surprises at the till.</p>
+<!-- ===== TRANSPARENT PRICING COMMITMENT ===== -->
+<section class="section">
+    <div class="container">
+        <div class="tp-wrapper aos">
+            <div class="tp-header text-center">
+                <div class="tp-badge">
+                    <i class="fas fa-shield-halved"></i> Transparent Pricing Guarantee
+                </div>
+                <h2 class="section-title">No Hidden Fees. Just Great Value.</h2>
+                <div class="gold-divider"></div>
+                <p class="section-desc">
+                    Every price listed is what you pay. We believe great grooming should be accessible, clear, and honest — with zero surprise add-ons at checkout.
+                </p>
+            </div>
+
+            <div class="tp-grid">
+                <div class="tp-card aos delay-1">
+                    <div class="tp-icon-wrapper">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h3 class="tp-card-title">All-Inclusive Rates</h3>
+                    <p class="tp-card-desc">Consultation, hot towels, and premium styling products are always included with zero add-on fees.</p>
+                </div>
+
+                <div class="tp-card aos delay-2">
+                    <div class="tp-icon-wrapper">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3 class="tp-card-title">Zero Card Fees</h3>
+                    <p class="tp-card-desc">Pay with Visa, MasterCard, Amex, Apple Pay, or Cash with 0% processing fees or transaction markups.</p>
+                </div>
+
+                <div class="tp-card aos delay-3">
+                    <div class="tp-icon-wrapper">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3 class="tp-card-title">Easy Cancellations</h3>
+                    <p class="tp-card-desc">Reschedule or cancel easily online up to 4 hours before your slot with zero hassle or penalties.</p>
+                </div>
+
+                <div class="tp-card aos delay-4">
+                    <div class="tp-icon-wrapper">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="tp-card-title">100% Satisfaction</h3>
+                    <p class="tp-card-desc">Not totally satisfied? Come back within 1 week after haircut and our barbers will touch up your cut for free.</p>
+                </div>
+            </div>
+
+            <div class="tp-highlights-bar aos delay-3">
+                <div class="tp-highlight-item">
+                    <i class="fas fa-cut"></i> Haircuts from <span class="tp-highlight-price">$25</span>
+                </div>
+                <div class="tp-highlight-item">
+                    <i class="fas fa-user-tie"></i> Beard Trims from <span class="tp-highlight-price">$18</span>
+                </div>
+                <div class="tp-highlight-item">
+                    <i class="fas fa-spa"></i> Scalp Massage from <span class="tp-highlight-price">$20</span>
+                </div>
+                <div class="tp-highlight-item">
+                    <i class="fas fa-crown"></i> Memberships from <span class="tp-highlight-price">$49/mo</span>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
